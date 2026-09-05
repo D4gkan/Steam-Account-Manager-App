@@ -93,4 +93,4 @@ This project is licensed under the MIT License.
 
 ## Disclaimer
 
-This app is intended for managing Steam-related account sessions on Android. Use it in accordance with the applicable service terms and applicable local laws.
+This app is intended for managing Steam-related account sessions on Android. Use it in accordance with the applicable service terms and applicable local laws..
