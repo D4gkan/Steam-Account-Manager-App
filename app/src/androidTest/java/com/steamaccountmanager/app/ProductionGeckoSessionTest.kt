@@ -37,6 +37,71 @@ import org.junit.runner.RunWith
 class ProductionGeckoSessionTest {
 
     @Test
+    fun officialPopupCanCloseAndReopenWithoutDisablingExtension() = runBlocking {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val context = instrumentation.targetContext.applicationContext
+        val automation = instrumentation.uiAutomation
+        val marker = UUID.randomUUID().toString().replace("-", "")
+        val server = LoopbackFixture(marker)
+        try {
+            stopBrowserWorker(context)
+            server.start()
+            open(context, SessionIdentifier("popup-close-$marker", "csfloat"), server.url("SHELL-POPUP"))
+            waitForText(automation, "DESKTOP-UA|DESKTOP-VIEWPORT")
+            clickText(automation, "Install CSFloat")
+            waitForText(automation, "Install-time CSFloat access request")
+            clickText(automation, "Accept CSFloat access")
+            waitForTextContaining(automation, "CSFloat: enabled")
+            clickText(automation, "Open CSFloat")
+            waitForText(automation, "Back to website")
+            waitForTextContaining(automation, "Offer Tracking Enabled")
+            clickText(automation, "Back to website")
+            waitForText(automation, "Extensions")
+            waitForText(automation, "DESKTOP-UA|DESKTOP-VIEWPORT")
+            clickText(automation, "Extensions")
+            waitForText(automation, "Disable CSFloat")
+            clickText(automation, "Open CSFloat")
+            waitForText(automation, "Back to website")
+            assertTrue(automation.performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK))
+            waitForText(automation, "Extensions")
+            waitForText(automation, "DESKTOP-UA|DESKTOP-VIEWPORT")
+        } finally {
+            stopBrowserWorker(context)
+            server.close()
+        }
+    }
+
+    @Test
+    fun desktopWebsitesKeepExtensionControlsCollapsedAndDismissible() = runBlocking {
+        val instrumentation = InstrumentationRegistry.getInstrumentation()
+        val context = instrumentation.targetContext.applicationContext
+        val automation = instrumentation.uiAutomation
+        val marker = UUID.randomUUID().toString().replace("-", "")
+        val server = LoopbackFixture(marker)
+        try {
+            stopBrowserWorker(context)
+            server.start()
+            for (website in listOf("custom_https", "csfloat")) {
+                open(context, SessionIdentifier("desktop-shell-$marker", website), server.url("SHELL-DESKTOP"))
+                waitForText(automation, "DESKTOP-UA|DESKTOP-VIEWPORT")
+                if (website == "csfloat") {
+                    assertTrue(hasExactText(automation, "Extensions"))
+                    assertFalse(hasExactText(automation, "Install CSFloat"))
+                    clickText(automation, "Extensions")
+                    waitForText(automation, "Install CSFloat")
+                    clickText(automation, "Hide extensions")
+                    assertFalse(hasExactText(automation, "Install CSFloat"))
+                    waitForText(automation, "DESKTOP-UA|DESKTOP-VIEWPORT")
+                }
+                stopBrowserWorker(context)
+            }
+        } finally {
+            stopBrowserWorker(context)
+            server.close()
+        }
+    }
+
+    @Test
     fun genericGeckoBrowserShellSkipsSteamFeaturesAndTraversesPolicyHistoryRecoveryAndClose() = runBlocking {
         val instrumentation = InstrumentationRegistry.getInstrumentation()
         val context = instrumentation.targetContext.applicationContext
@@ -903,7 +968,9 @@ class ProductionGeckoSessionTest {
         "PROD-GECKO|requested=$requested|cookie=$cookie|local=$local|idb=$idb"
 
     private fun waitForText(automation: android.app.UiAutomation, expected: String) {
+        revealExtensionControls(automation, expected)
         assertTrue("Timed out waiting for accessibility marker: $expected", waitUntil(UI_TIMEOUT_MS) {
+            revealExtensionControls(automation, expected)
             hasExactText(automation, expected)
         })
     }
@@ -915,7 +982,9 @@ class ProductionGeckoSessionTest {
     }
 
     private fun waitForTextContaining(automation: android.app.UiAutomation, expected: String) {
+        revealExtensionControls(automation, expected)
         assertTrue("Timed out waiting for accessibility text containing: $expected", waitUntil(UI_TIMEOUT_MS) {
+            revealExtensionControls(automation, expected)
             hasTextContaining(automation.rootInActiveWindow, expected) || automation.windows.any {
                 hasTextContaining(it.root, expected)
             }
@@ -934,8 +1003,10 @@ class ProductionGeckoSessionTest {
     }
 
     private fun clickText(automation: android.app.UiAutomation, expected: String) {
+        revealExtensionControls(automation, expected)
         var clicked = false
         assertTrue("Timed out waiting to click: $expected", waitUntil(UI_TIMEOUT_MS) {
+            revealExtensionControls(automation, expected)
             val node = findExactText(automation.rootInActiveWindow, expected)
             var clickable = node
             while (clickable != null && !clicked) {
@@ -947,6 +1018,8 @@ class ProductionGeckoSessionTest {
             node?.recycle()
             clicked
         })
+        if (expected == "Extensions") waitForText(automation, "Hide extensions")
+        if (expected == "Hide extensions") waitForText(automation, "Extensions")
     }
 
     private fun assertControlEnabled(
@@ -954,6 +1027,7 @@ class ProductionGeckoSessionTest {
         description: String,
         expected: Boolean,
     ) {
+        revealExtensionControls(automation, description)
         assertTrue("Control $description did not reach enabled=$expected", waitUntil(UI_TIMEOUT_MS) {
             val node = findExactText(automation.rootInActiveWindow, description)
             var current = node
@@ -974,6 +1048,14 @@ class ProductionGeckoSessionTest {
         val node = findExactText(automation.rootInActiveWindow, expected)
         node?.recycle()
         return node != null
+    }
+
+    private fun revealExtensionControls(automation: android.app.UiAutomation, expected: String) {
+        if ((expected.contains("CSFloat") || expected.contains("CS.MONEY") ||
+                expected.contains("Skins.com") || expected.startsWith("Test ")) &&
+            hasExactText(automation, "Extensions")) {
+            clickText(automation, "Extensions")
+        }
     }
 
     private fun findExactText(root: AccessibilityNodeInfo?, expected: String): AccessibilityNodeInfo? {
@@ -1077,7 +1159,7 @@ class ProductionGeckoSessionTest {
 
         private fun fixtureHtml(run: String, recovered: Boolean) = """
             <!doctype html><html><head><meta charset="utf-8"><title>PROD-GECKO|loading</title></head>
-            <body><main id="marker">PROD-GECKO|loading</main>
+            <body><main id="marker">PROD-GECKO|loading</main><p id="desktop"></p>
             <nav>
               <a href="/shell?slot=SHELL-B">Allowed page</a>
               <a href="/auth-redirect?slot=AUTH">Authentication redirect</a>
@@ -1086,6 +1168,9 @@ class ProductionGeckoSessionTest {
               <a href="/flaky?slot=RECOVERED">Recoverable failure</a>
             </nav><script>
             (() => {
+              document.getElementById('desktop').textContent =
+                (/Mobile|Android/.test(navigator.userAgent) ? 'MOBILE-UA' : 'DESKTOP-UA') + '|' +
+                (window.innerWidth >= 980 ? 'DESKTOP-VIEWPORT' : 'MOBILE-VIEWPORT');
               const requested = ${if (recovered) "'RECOVERED'" else "new URL(location.href).searchParams.get('slot')"};
               const scope = '$run';
               const cookieName = 'prod_' + scope;

@@ -16,6 +16,10 @@ Steam Account Manager keeps multiple Steam-related website sessions on one Andro
 
 **Browser shell**: App-owned navigation, loading/error recovery, permission prompts, extension controls and external handoff surrounding a browser session.
 
+Website sessions and extension-created website helper tabs request desktop user-agent
+and viewport modes before loading. Extension controls start collapsed, and popup
+windows provide an explicit return to the website without disabling the extension.
+
 **Navigation policy**: The allowed primary and authentication destinations for a website. Other web destinations require explicit external handoff; malformed or non-web destinations are rejected.
 
 **Supported extension**: A pinned, official, unmodified Firefox package selected for a configured website: CSFloat for Steam/CSFloat, CS.MONEY for CS.MONEY, and Skins.com Marketplace for Skins.com. Installation and additional access require explicit consent within that browser session. Trade Token Sync is deferred until a publisher-issued Firefox package exists (issue #17).

@@ -10,6 +10,8 @@ import android.os.Handler
 import android.os.Looper
 import android.content.pm.ApplicationInfo
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -19,6 +21,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -44,6 +47,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.steamaccountmanager.app.browser.SteamLoginDetector
@@ -63,12 +67,19 @@ import org.mozilla.geckoview.AllowOrDeny
 import org.mozilla.geckoview.GeckoResult
 import org.mozilla.geckoview.GeckoRuntime
 import org.mozilla.geckoview.GeckoSession
+import org.mozilla.geckoview.GeckoSessionSettings
 import org.mozilla.geckoview.GeckoView
 import org.mozilla.geckoview.WebExtension
 import org.mozilla.geckoview.WebExtensionController
 import org.mozilla.geckoview.WebRequestError
 
 private const val DEBUG_ACTIVITY_RECREATED = "geckoBrowserActivityRecreated"
+
+/** Configure both layout and the request identity before any website can load. */
+internal fun newDesktopWebsiteSession() = GeckoSession().apply {
+    settings.userAgentMode = GeckoSessionSettings.USER_AGENT_MODE_DESKTOP
+    settings.viewportMode = GeckoSessionSettings.VIEWPORT_MODE_DESKTOP
+}
 
 private tailrec fun Context.findActivity(): Activity? = when (this) {
     is Activity -> this
@@ -101,6 +112,8 @@ fun GeckoBrowserScreen(
     val extensionPackage = selectedPackage ?: CsfloatExtensionContract
     val extensionName = extensionPackage.NAME
     val context = LocalContext.current
+    val controlsMaxHeight = (LocalConfiguration.current.screenHeightDp * 0.4f).dp
+    var showExtensionControls by remember { mutableStateOf(false) }
     val debugBuild = remember(context) {
         context.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
     }
@@ -287,6 +300,23 @@ fun GeckoBrowserScreen(
         closePopup()
     }
 
+    fun showPopupDialog(view: GeckoView): Dialog = Dialog(context).apply {
+        val content = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            addView(Button(context).apply {
+                text = "Back to website"
+                isAllCaps = false
+                contentDescription = "Back to website"
+                setOnClickListener { dismissPopup() }
+            }, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT))
+            addView(view, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f))
+        }
+        setContentView(content)
+        setOnDismissListener { dismissPopup() }
+        show()
+        window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+    }
+
     fun clearCsfloat() {
         optionalPromptResult?.complete(AllowOrDeny.DENY)
         optionalPromptResult = null
@@ -349,16 +379,10 @@ fun GeckoBrowserScreen(
                 open(requireNotNull(runtimeRef))
             }
             val view = GeckoView(context).apply { setSession(popup) }
-            val dialog = Dialog(context).apply {
-                setTitle("Official ${extensionName} popup")
-                setContentView(view, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
-                setOnDismissListener { dismissPopup() }
-                show()
-                window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-            }
             popupSession = popup
             popupView = view
-            popupDialog = dialog
+            showExtensionControls = false
+            popupDialog = showPopupDialog(view)
             return popup
     } catch (_: RuntimeException) {
         popupStatus.failed(request)
@@ -417,7 +441,7 @@ fun GeckoBrowserScreen(
                 }
                 // ponytail: at most two helper tabs; add a tab UI only if a supported package needs more.
                 if (extensionTabs.size >= 2) return null
-                val tab = GeckoSession()
+                val tab = newDesktopWebsiteSession()
                 extensionTabs.add(tab)
                 tab.contentDelegate = object : GeckoSession.ContentDelegate {
                     override fun onCloseRequest(session: GeckoSession) {
@@ -493,12 +517,8 @@ fun GeckoBrowserScreen(
                             closePopup()
                             popupSession = tab
                             popupView = GeckoView(context).apply { setSession(tab) }
-                            popupDialog = Dialog(context).apply {
-                                setContentView(requireNotNull(popupView))
-                                setOnDismissListener { extensionTabs.remove(tab); dismissPopup() }
-                                show()
-                                window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-                            }
+                            showExtensionControls = false
+                            popupDialog = showPopupDialog(requireNotNull(popupView))
                             runtimeRef?.webExtensionController?.setTabActive(tab, true)
                         }
                     }
@@ -1115,6 +1135,11 @@ fun GeckoBrowserScreen(
                     Modifier.padding(horizontal = 8.dp),
                 )
                 if (extensionsEnabled) {
+                TextButton(onClick = { showExtensionControls = !showExtensionControls }) {
+                    Text(if (showExtensionControls) "Hide extensions" else "Extensions")
+                }
+                if (showExtensionControls) {
+                Column(Modifier.heightIn(max = controlsMaxHeight).verticalScroll(rememberScrollState())) {
                 Row(
                     modifier = Modifier.fillMaxWidth().padding(horizontal = 8.dp),
                     verticalAlignment = Alignment.CenterVertically,
@@ -1373,6 +1398,8 @@ fun GeckoBrowserScreen(
                 )
                 updateTestState?.let { Text(it, Modifier.padding(horizontal = 8.dp)) }
                 }
+                }
+                }
             }
         }
         if (loading) {
@@ -1391,7 +1418,7 @@ fun GeckoBrowserScreen(
                             ViewGroup.LayoutParams.MATCH_PARENT,
                         )
                     }
-                    val session = GeckoSession()
+                    val session = newDesktopWebsiteSession()
                     session.navigationDelegate = object : GeckoSession.NavigationDelegate {
                         override fun onCanGoBack(session: GeckoSession, value: Boolean) {
                             canGoBack = value

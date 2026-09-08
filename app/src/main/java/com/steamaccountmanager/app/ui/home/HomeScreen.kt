@@ -96,7 +96,13 @@ fun HomeScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                 ) {
                     items(state.accounts, key = { it.id }) { account ->
-                        ReorderableItem(reorderState, key = account.id) { isDragging ->
+                        // Use the core overload: the library's LazyItemScope overload calls
+                        // animateItemPlacement, which was removed from newer Compose versions.
+                        ReorderableItem(
+                            state = reorderState,
+                            key = account.id,
+                            defaultDraggingModifier = Modifier.animateItem(),
+                        ) { isDragging ->
                             AccountCard(
                                 account = account,
                                 isDragging = isDragging,

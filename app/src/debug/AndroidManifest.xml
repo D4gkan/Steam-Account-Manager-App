@@ -4,12 +4,7 @@
         <activity
             android:name=".prototype.GeckoPrototypeRouterActivity"
             android:exported="true"
-            android:label="Gecko profile isolation prototype">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:label="Gecko profile isolation prototype" />
         <activity
             android:name=".prototype.GeckoViewPrototypeActivity"
             android:exported="false"
