@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-08",
+  "timezone": "Europe/Paris",
+  "applicationSource": "3eeebfbb84d9c1ed6ce0312bf6ba519487bdbdb3",
+  "instrumentationSource": "349a0b73013ef71d9953a8c3598d501845226296",
+  "appSha256": "8EB0D613A1D579266029C334C2DFED1A887F9579C606CAE3507BD622E03D812A",
+  "testSha256": "3ECCEE7F53A11416E6097673AEC884AA2C0B0642725FF223C1D4B31270AC7AE4",
+  "installedHashesVerifiedBeforeRun": true,
+  "environment": "Same API36/x86_64 AVD; emulator-5580; 4096 MiB; -gpu host; no snapshot loaded",
+  "host": {
+    "http_code": 200,
+    "time_namelookup": 0.010134,
+    "time_connect": 0.017201,
+    "time_appconnect": 0.036751,
+    "time_starttransfer": 0.16286,
+    "time_total": 0.163769,
+    "size_download": 4342,
+    "content_type": "text/html; charset=utf-8",
+    "site": "csgoempire",
+    "exit": 0,
+    "title": [
+      "The most trusted Counter-Strike Skin Gambling Site"
+    ],
+    "scriptTags": 3,
+    "timestamp": "2026-09-08T18:44:58+0200"
+  },
+  "test": "com.steamaccountmanager.app.ProductionGeckoSessionTest#supportedPublicWebsitesOpenThroughGecko",
+  "focused": {
+    "selector": "siteWebsite=csgoempire",
+    "result": "PASS",
+    "seconds": 8.65,
+    "logSha256": "4893158F57798D4B26AFD41A3F8A6C93F6014EC7917951C441FD1514910D8C39"
+  },
+  "matrix": {
+    "selector": null,
+    "result": "PASS",
+    "seconds": 41.948,
+    "sites": [
+      "steam",
+      "csfloat",
+      "csmoney",
+      "skins_com",
+      "csgoempire",
+      "custom_https"
+    ],
+    "logSha256": "7F2670A5485DDAAB827E09ADAD8764F5EC79977C5108D735277A92EA172070A3"
+  },
+  "image": {
+    "file": "site-csgoempire-recheck.png",
+    "sha256": "ADB78B4D392E8951F78D7CD3FF9BD87B3E1C8A6F8FE2C8377E0B1E7FBC4181C9",
+    "bytes": 313424,
+    "source": "Focused emulator rerun; visually reviewed original logged-out capture; no authentication or personal data"
+  },
+  "interpretation": "Earlier timeout no longer reproduces with unchanged APKs and URL. Consistent with a transient site/network-path failure; available earlier diagnostics do not identify the exact cause.",
+  "limits": "Original full run remains 37/38; this is a passing rerun of its failed matrix test, not a newly executed 38/38 full run. Physical-device and authenticated acceptance remain pending."
+}

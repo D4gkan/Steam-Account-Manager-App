@@ -1,0 +1,280 @@
+{
+  "applicationSource": "3eeebfbb84d9c1ed6ce0312bf6ba519487bdbdb3",
+  "instrumentationSource": "349a0b73013ef71d9953a8c3598d501845226296",
+  "elapsedSeconds": 1034.604,
+  "tests": 38,
+  "passed": 37,
+  "failed": 1,
+  "skipped": 0,
+  "failure": "Public websites did not finish loading: [csgoempire]",
+  "originalLogSha256": "996BBB0294F9BD26CFE23D6D493DF195006446B873582C2D6DBAA519863E5E76",
+  "results": [
+    {
+      "class": "com.steamaccountmanager.app.AccountRepositoryTest",
+      "test": "renameAccount_updatesDisplayNameOnly",
+      "index": 1,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.AccountRepositoryTest",
+      "test": "reorder_persistsAcrossReads",
+      "index": 2,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.AccountRepositoryTest",
+      "test": "deleteAccount_removesItButNotOthers",
+      "index": 3,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.AccountRepositoryTest",
+      "test": "createAccount_preservesUserProvidedDisplayName",
+      "index": 4,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.BrowserProcessControllerTest",
+      "test": "noSessionIsReportedActive_whenBrowserProcessIsNotRunning",
+      "index": 5,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.PinManagerTest",
+      "test": "clearPin_removesStoredHash",
+      "index": 6,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.PinManagerTest",
+      "test": "verifyPin_withNoPinSet_returnsFalseRatherThanThrowing",
+      "index": 7,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.PinManagerTest",
+      "test": "verifyPin_rejectsAnIncorrectPin",
+      "index": 8,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.PinManagerTest",
+      "test": "verifyPin_acceptsTheCorrectPin",
+      "index": 9,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "productionCsfloatTransitionsFromUnavailableToOfficialTrackingPopupAndRemainsIsolated",
+      "index": 10,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "productionCsfloatDeniedVerificationFailureBlanksAndRetriesInspection",
+      "index": 11,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "productionGeckoSessionPersistsIsolatesStopsAndRoutesLatestRequest",
+      "index": 12,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "productionCsfloatCanBeDisabledEnabledUninstalledReinstalledAndKeepsOtherSessionEnabled",
+      "index": 13,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "genericGeckoBrowserShellSkipsSteamFeaturesAndTraversesPolicyHistoryRecoveryAndClose",
+      "index": 14,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "denyingDetectorConsentDoesNotLoadOrPersistConsent",
+      "index": 15,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "productionCsfloatInstallCanBeInspectedAndDeniedWithoutBreakingBrowsing",
+      "index": 16,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "productionCsfloatCleanupFailureBlanksThenRetriesToConfirmedAbsence",
+      "index": 17,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "steamContentScriptPersistsSyntheticProfileThroughSessionBridge",
+      "index": 18,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "detectorBroadcastPersistsOnlySyntheticPublicProfileValues",
+      "index": 19,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "marketplaceExtensionsRequireConsentOpenOfficialPopupsAndPersistInIsolation",
+      "index": 20,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "forcedShutdownCannotResurrectThePreviousProfile",
+      "index": 21,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.ProductionGeckoSessionTest",
+      "test": "supportedPublicWebsitesOpenThroughGecko",
+      "index": 22,
+      "result": "FAIL",
+      "statusCode": -2
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "explicitStopSupersedesPendingCrossProfileSelection",
+      "index": 23,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "alreadyEnabledMarkerOperationsProduceFreshResults",
+      "index": 24,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "markerRemainsEnabledAfterInterruptedScreenReopens",
+      "index": 25,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "interruptedMarkerRestartCompletesBeforeWorkerShutdown",
+      "index": 26,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "publicSteamExternalRecoveryRemainsAvailableAfterSafeError",
+      "index": 27,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "latestReopenWinsWhileCrossProfileShutdownIsPending",
+      "index": 28,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "navigationGateExposesControlsAndBlocksWithoutAutomaticHandoff",
+      "index": 29,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "markerUninstallRemainsAbsentAfterWorkerStopAndReopen",
+      "index": 30,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "routerRecreationDuringPendingSwitchFinishesCleanupWithoutStaleAuthorization",
+      "index": 31,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "explicitMarkerDisablePersistsAfterInterruptedReopen",
+      "index": 32,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "markerReinstallAfterWorkerStopAndReopenProducesFreshResult",
+      "index": 33,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "reopenDuringExplicitStopWaitsForDeathThenRestoresSelectedProfile",
+      "index": 34,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "markerReconnectsAcrossRepeatedWorkerActivityRecreation",
+      "index": 35,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "markerReconnectsAcrossRepeatedScreenReopen",
+      "index": 36,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "com.steamaccountmanager.app.prototype.PrototypeProfileIsolationTest",
+      "test": "syntheticSlotsRestoreEngineAndExtensionMarkersAcrossRealWorkerLifecycles",
+      "index": 37,
+      "result": "PASS",
+      "statusCode": 0
+    },
+    {
+      "class": "org.mozilla.geckoview.BrowserExtensionNotificationsTest",
+      "test": "nativeAlertIsPrivateCoalescedAndCannotOutliveTheProfile",
+      "index": 38,
+      "result": "PASS",
+      "statusCode": 0
+    }
+  ],
+  "appProcessesAfterRun": 0
+}

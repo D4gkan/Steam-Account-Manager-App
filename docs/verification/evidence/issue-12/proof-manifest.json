@@ -1,0 +1,85 @@
+{
+  "applicationSource": "3eeebfbb84d9c1ed6ce0312bf6ba519487bdbdb3",
+  "appSha256": "8EB0D613A1D579266029C334C2DFED1A887F9579C606CAE3507BD622E03D812A",
+  "environment": "Android16/API36/x86_64, emulator5580,4GiB,-gpu host,NVIDIA RTX3070Ti",
+  "privacy": "Original captures from the final full instrumentation run on synthetic logged-out profiles, visually reviewed. No credentials, identifying authentication screens or personal trade contents. site-csgoempire.png records a timeout, not success.",
+  "images": [
+    {
+      "file": "csfloat-consent.png",
+      "bytes": 219619,
+      "sha256": "42F5C37C98B8CAB8A4CA1A7E1B45BEED4C9D830CBFCE80681AB450B85999DD3D"
+    },
+    {
+      "file": "csfloat-enabled.png",
+      "bytes": 180620,
+      "sha256": "00F612868445C85A79B6C845DE9E6002FA401FB5119665B7ACF8B02685A20684"
+    },
+    {
+      "file": "csfloat-popup.png",
+      "bytes": 41545,
+      "sha256": "32749416BDFBE970797A353B4D1605F367F38B04D536BB1A9EA4214716A2FAE2"
+    },
+    {
+      "file": "csmoney-consent.png",
+      "bytes": 235232,
+      "sha256": "1C501D73A3CC3B6A40E426FB0F7DBA4C7D05ACA92E9175CFE7EC4FD05FB60CD0"
+    },
+    {
+      "file": "csmoney-enabled.png",
+      "bytes": 204743,
+      "sha256": "F35435CB430DEBAA70AC5917FFA425D96B06EF2D3A635D396E644C81CD6CCD18"
+    },
+    {
+      "file": "csmoney-popup.png",
+      "bytes": 62485,
+      "sha256": "231E326A42820ADCCFEF94EAF3EDB73694D85E260AA026D7EE9575A17650D657"
+    },
+    {
+      "file": "site-csfloat.png",
+      "bytes": 322811,
+      "sha256": "337706414FE164A07240A2EFEF706344E6B1770F31C5FD7DE7F99A4F7C2EEB24"
+    },
+    {
+      "file": "site-csgoempire.png",
+      "bytes": 34435,
+      "sha256": "6FEA40FB0590AC35A4B15765151E6AF485CA9F15F352605C732D52B729CF2B7F"
+    },
+    {
+      "file": "site-csmoney.png",
+      "bytes": 554636,
+      "sha256": "6813F9D36397E44AF73A52B6BA889D27E63A05375C31E786779116C535705B5C"
+    },
+    {
+      "file": "site-custom_https.png",
+      "bytes": 81730,
+      "sha256": "1376C12160F907A890A23D310CEAFB518D0A46AA5EDE46E1A562D5E28E99942F"
+    },
+    {
+      "file": "site-skins_com.png",
+      "bytes": 551516,
+      "sha256": "4F9FDFC36009A1D1D7F86FDAEDE61DAEA6D072DDAA546687F28E7F8A134E9714"
+    },
+    {
+      "file": "skins_com-consent.png",
+      "bytes": 232978,
+      "sha256": "7AC0DEFC9A9D6574F911D08B302751758F8A7037AF9FD4D89970072870706C4D"
+    },
+    {
+      "file": "skins_com-enabled.png",
+      "bytes": 191142,
+      "sha256": "BA259DB2E5981893B13957E2DEE9DDB6136F37D290CF6C32A7B1A3AD6DA5F7BA"
+    },
+    {
+      "file": "skins_com-host-consent.png",
+      "bytes": 206163,
+      "sha256": "EDF187B6C4FD490A2D28641826CBB03EABD9BB0B66B2F94109ABEBAF58A5706C"
+    },
+    {
+      "file": "skins_com-popup.png",
+      "bytes": 70894,
+      "sha256": "BE6752C12E376F2F67AAA54EA6FBC45678F1945EC9D6333DC9A4B3393F3756D0"
+    }
+  ],
+  "instrumentationSource": "349a0b73013ef71d9953a8c3598d501845226296",
+  "testSha256": "3ECCEE7F53A11416E6097673AEC884AA2C0B0642725FF223C1D4B31270AC7AE4"
+}

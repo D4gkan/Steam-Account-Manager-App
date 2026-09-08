@@ -7,7 +7,7 @@ import com.steamaccountmanager.app.domain.model.WebsiteSessionMeta
 
 /**
  * Tracks metadata about which (account, website) pairs have ever been opened --
- * NOT the session data itself, which lives in the WebView engine's own per-suffix
+ * NOT the session data itself, which lives in GeckoView's own per-profile
  * data directory (see browser/BrowserProcessController). Used purely so the UI can
  * show "Session ready" vs. "Not signed in yet" without touching the browser layer.
  */

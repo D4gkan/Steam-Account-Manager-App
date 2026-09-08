@@ -1,0 +1,29 @@
+--------- beginning of main
+09-02 15:27:19.117 17033 17158 W HWUI    : Failed to initialize 101010-2 format, error = EGL_SUCCESS
+09-02 15:27:19.273 17033 17164 W Settings: Setting animator_duration_scale has moved from android.provider.Settings.System to android.provider.Settings.Global, returning read-only global URI.
+09-02 15:27:19.284 17033 17164 E GeckoLibLoad: Load sqlite start
+09-02 15:27:19.290 17033 17164 E GeckoLibLoad: Load sqlite done
+09-02 15:27:19.290 17033 17164 E GeckoLibLoad: Load nss start
+09-02 15:27:19.290 17033 17164 E GeckoLibLoad: Load nss done
+09-02 15:27:19.487 17033 17164 E GeckoLibLoad: Loaded libs in 196.175200ms total, 0ms(38ms) user, 105ms(276ms) system, 104(105) faults
+09-02 15:27:19.488 17033 17164 W GeckoThread: zerdatime 5111311 - runGecko
+09-02 15:27:19.526 17033 17033 W HWUI    : Unknown dataspace 0
+09-02 15:27:19.795 17033 17033 W com.steamaccountmanager.app.debug:gecko_prototype: type=1400 audit(0.0:773): avc:  denied  { bind } for  comm=4E65746C696E6B204D6F6E69746F72 scontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tcontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tclass=netlink_route_socket permissive=0 bug=b/155595000 app=com.steamaccountmanager.app.debug
+09-02 15:27:20.010 17033 17164 E gecko_prototype: hiddenapi: Accessing hidden field Ljava/lang/Boolean;->value:Z (runtime_flags=0, domain=core-platform, api=max-target-p) from Lorg/mozilla/gecko/GeckoThread; (domain=app) using JNI: denied
+09-02 15:27:20.010 17033 17164 E gecko_prototype: hiddenapi: Accessing hidden field Ljava/lang/Integer;->value:I (runtime_flags=0, domain=core-platform, api=max-target-p) from Lorg/mozilla/gecko/GeckoThread; (domain=app) using JNI: denied
+09-02 15:27:20.010 17033 17164 E gecko_prototype: hiddenapi: Accessing hidden field Ljava/lang/Long;->value:J (runtime_flags=0, domain=core-platform, api=max-target-p) from Lorg/mozilla/gecko/GeckoThread; (domain=app) using JNI: denied
+09-02 15:27:20.010 17033 17164 E gecko_prototype: hiddenapi: Accessing hidden field Ljava/lang/Double;->value:D (runtime_flags=0, domain=core-platform, api=max-target-p) from Lorg/mozilla/gecko/GeckoThread; (domain=app) using JNI: denied
+09-02 15:27:20.731 17033 17033 W Gecko   : type=1400 audit(0.0:774): avc:  denied  { read } for  name="product_name" dev="sysfs" ino=842 scontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tcontext=u:object_r:sysfs:s0 tclass=file permissive=0 app=com.steamaccountmanager.app.debug
+09-02 15:27:20.731 17033 17033 W Gecko   : type=1400 audit(0.0:775): avc:  denied  { read } for  name="product_sku" dev="sysfs" ino=846 scontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tcontext=u:object_r:sysfs:s0 tclass=file permissive=0 app=com.steamaccountmanager.app.debug
+09-02 15:27:21.685 17033 17164 W GeckoEventDispatcher: No listener for GeckoView:LocationChange
+09-02 15:28:03.183 17033 17033 W com.steamaccountmanager.app.debug:gecko_prototype: type=1400 audit(0.0:782): avc:  denied  { nlmsg_readpriv } for  comm=536F636B657420546872656164 scontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tcontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tclass=netlink_route_socket permissive=0 bug=b/155595000 app=com.steamaccountmanager.app.debug
+09-02 15:28:05.409 17033 17033 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda13@dfe9bf2
+09-02 15:28:51.961 17033 17033 W WindowOnBackDispatcher: sendCancelIfRunning: isInProgress=false callback=android.view.ViewRootImpl$$ExternalSyntheticLambda13@689f050
+09-02 15:28:51.991 17033 17164 W GeckoEventDispatcher: No listener for GeckoView:WebExtension:OnInstalling
+09-02 15:28:52.044 17033 17164 W GeckoEventDispatcher: No listener for GeckoView:WebExtension:OnInstalled
+09-02 15:28:52.141 17033 17164 W GeckoEventDispatcher: No listener for GeckoView:WebExtension:OnOptionalPermissionsChanged
+09-02 15:28:52.194 17033 17164 W GeckoEventDispatcher: No listener for GeckoView:BrowserAction:Update
+09-02 15:28:52.414 17033 17164 W GeckoEventDispatcher: No listener for GeckoView:WebExtension:OnReady
+09-02 15:28:52.511 17033 17033 W GeckoNetworkManager: Invalid event enableNotifications for state OffWithListeners
+09-02 15:28:52.527 17033 17033 W com.steamaccountmanager.app.debug:gecko_prototype: type=1400 audit(0.0:783): avc:  denied  { nlmsg_readpriv } for  comm=536F636B657420546872656164 scontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tcontext=u:r:untrusted_app:s0:c223,c256,c512,c768 tclass=netlink_route_socket permissive=0 bug=b/155595000 app=com.steamaccountmanager.app.debug
+09-02 15:28:53.056 17033 17164 W GeckoEventDispatcher: No listener for GeckoView:BrowserAction:Update

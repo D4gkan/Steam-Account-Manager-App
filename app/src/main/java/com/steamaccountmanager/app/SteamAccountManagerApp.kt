@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
  * NOTE: This Application class is also instantiated in the `:browser` process
  * (every process running any part of this app gets its own Application instance).
  * Everything constructed here must be safe to exist in a process that will only
- * ever host a single WebView and nothing else -- which the objects below are.
+ * ever host a single browser profile and nothing else -- which the objects below are.
  */
 class SteamAccountManagerApp : Application() {
 

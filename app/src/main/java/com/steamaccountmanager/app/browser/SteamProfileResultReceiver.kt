@@ -22,8 +22,13 @@ class SteamProfileResultReceiver : BroadcastReceiver() {
         val steamProfileId = intent.getStringExtra(SteamLoginDetector.EXTRA_STEAM_PROFILE_ID)
 
         val app = context.applicationContext as SteamAccountManagerApp
+        val pendingResult = goAsync()
         app.applicationScope.launch {
-            app.accountRepository.updateSteamProfile(accountId, avatarUrl, steamProfileId)
+            try {
+                app.accountRepository.updateSteamProfile(accountId, avatarUrl, steamProfileId)
+            } finally {
+                pendingResult.finish()
+            }
         }
     }
 }

@@ -2,10 +2,8 @@
 <!--
   Applies to Android < 12 (API < 31) full-backup.
   Only the Room database's non-sensitive configuration tables and DataStore
-  preference file are included. All WebView data directories (app_webview*,
-  which hold cookies/localStorage/IndexedDB per session) and the encrypted
-  credential store are explicitly excluded, per the "never back up authenticated
-  sessions or secrets" requirement.
+  preference file are included. Gecko profiles live under no-backup storage, and the
+  encrypted credential store is explicitly excluded.
 -->
 <full-backup-content>
     <include domain="database" path="." />

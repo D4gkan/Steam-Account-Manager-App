@@ -4,18 +4,16 @@ package com.steamaccountmanager.app.domain.model
  * Identifies exactly one isolated browser session: one account, on one website.
  *
  * This is the unit of isolation everywhere in the app -- NOT the account alone.
- * See [com.steamaccountmanager.app.browser.SessionManager] for how this maps to an
- * actual on-disk WebView data directory.
+ * [com.steamaccountmanager.app.browser.GeckoProfileIdentity] maps it to an opaque,
+ * persistent Gecko profile directory.
  */
 data class SessionIdentifier(
     val accountId: String,
     val websiteId: String,
 ) {
     /**
-     * A filesystem/process-safe suffix derived from account + website.
-     * Passed to WebView.setDataDirectorySuffix() -- must contain no path separators,
-     * so account/website ids (which are app-generated UUIDs or slugs) are lightly
-     * sanitized defensively.
+     * Stable metadata key retained for existing database rows. Gecko profile paths use
+     * [com.steamaccountmanager.app.browser.GeckoProfileIdentity] instead.
      */
     val dataDirectorySuffix: String
         get() = "acc_${sanitize(accountId)}_site_${sanitize(websiteId)}"
@@ -39,6 +37,6 @@ data class WebsiteSessionMeta(
     val websiteId: String,
     val createdAtEpochMillis: Long,
     val lastUsedAtEpochMillis: Long,
-    /** True once the WebView data directory for this session has actually been created. */
+    /** True once persistent browser data for this session has actually been created. */
     val hasStoredData: Boolean,
 )

@@ -24,7 +24,8 @@ Steam Account Manager is designed to keep separate Steam sessions isolated per a
 
 - Multiple Steam accounts in one app
 - Per-account website session isolation
-- Persistent browser session handling
+- Persistent GeckoView browser sessions for every supported website
+- Official Firefox CSFloat, CS.MONEY and Skins.com extensions with explicit per-session consent
 - Local app lock with PIN and biometric support
 - Website selection flow for Steam-related sites
 - Account ordering and management
@@ -44,17 +45,19 @@ Steam Account Manager is designed to keep separate Steam sessions isolated per a
 
 ## Download
 
-The GitHub-ready APK is available in the releases folder:
-
-- [releases/SAMApp-v1.0.0.apk](releases/SAMApp-v1.0.0.apk)
+Published builds belong on [GitHub Releases](https://github.com/D4gkan/Steam-Account-Manager-App/releases).
+The GeckoView campaign candidate is awaiting final device acceptance; its exact build
+and local APK hashes are listed in the [verification receipt](docs/verification/geckoview-issue-12-emulator-run.md).
 
 ## Installation
 
-1. Download the APK from the Releases page or the repository release folder.
+1. Download a published APK from GitHub Releases, or use the supplied local campaign test APK.
 2. Enable installation from unknown sources on your Android device if needed.
 3. Install the APK and launch the app.
 
 ## Build Instructions
+
+Use Android Studio's bundled JDK 21 (verified with 21.0.8) and Android SDK 36. Set `JAVA_HOME` and `ANDROID_HOME` for your machine.
 
 To build the project locally:
 
@@ -67,6 +70,12 @@ To build a release APK:
 ```bash
 ./gradlew assembleRelease
 ```
+
+Without configured release signing, `assembleRelease` produces `app-release-unsigned.apk` for verification. Configure the existing `SAMAPP_RELEASE_*` environment variables or ignored `keystore.properties` before creating an installable production release.
+
+Existing WebView sign-ins cannot be migrated; sign in again once per account/website. Existing Gecko profiles persist across updates. Steam sign-in is separate from the marketplace profiles. Only the active browser session runs its extensions.
+
+See [final manual verification](docs/manual-testing/geckoview-final-release.md) and the [architecture/upgrade contract](docs/adr/0001-adopt-geckoview-for-csfloat.md). Trade Token Sync awaits an official Firefox package in [issue #17](https://github.com/D4gkan/Steam-Account-Manager-App/issues/17).
 
 ## Project Structure
 

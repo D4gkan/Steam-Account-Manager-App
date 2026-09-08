@@ -16,7 +16,7 @@ import androidx.security.crypto.MasterKey
  *  - The file (`secure_credentials.xml`) is explicitly excluded from Android backup
  *    in both backup_rules.xml (legacy) and data_extraction_rules.xml (API 31+).
  *  - This app does NOT need to retain the Steam password after login. The password
- *    the user types into the in-app Steam login WebView is submitted directly to
+ *    the user types into the in-app Steam login page is submitted directly to
  *    Steam's own login form; the app does not need to (and does not) intercept or
  *    store it beyond an optional short-lived "remember for this login attempt" buffer
  *    used only to re-fill the field if Steam Guard requires a second attempt. That

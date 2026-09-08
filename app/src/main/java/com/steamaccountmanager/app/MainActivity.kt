@@ -40,9 +40,9 @@ class MainActivity : ComponentActivity() {
         // (secure window snapshot), but explicitly do NOT set FLAG_SECURE -- the
         // user wants screenshots/screen-recording to keep working while the app is
         // actually in the foreground. setRecentsScreenshotEnabled(false) achieves
-        // exactly that split on API 28+: no recents thumbnail, but on-screen
+        // exactly that split on API 33+: no recents thumbnail, but on-screen
         // capture (screenshot/recording) is unaffected.
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.TIRAMISU) {
             setRecentsScreenshotEnabled(false)
         }
 

@@ -36,9 +36,9 @@ data class WebsiteEntity(
 
 /**
  * Metadata ONLY about an account+website session pairing -- e.g. "does this pairing
- * have a WebView data directory on disk, and when was it last opened". The actual
- * cookies/localStorage/IndexedDB live inside Android's app_webview_<suffix> directory
- * managed directly by the WebView/Chromium engine, never in this table.
+ * have persistent browser data on disk, and when was it last opened". The actual
+ * cookies/localStorage/IndexedDB live inside the session's Gecko profile,
+ * managed directly by GeckoView, never in this table.
  */
 @Entity(
     tableName = "account_website_sessions",

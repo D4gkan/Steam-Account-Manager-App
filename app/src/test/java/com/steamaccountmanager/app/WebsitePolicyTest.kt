@@ -1,6 +1,8 @@
 package com.steamaccountmanager.app
 
 import com.steamaccountmanager.app.browser.WebsitePolicy
+import com.steamaccountmanager.app.browser.WebsitePolicy.NavigationDecision
+import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -52,5 +54,16 @@ class WebsitePolicyTest {
     @Test
     fun `matching is case-insensitive`() {
         assertTrue(csfloatPolicy.isHostAllowed("CSFloat.COM"))
+    }
+
+    @Test
+    fun `classifies navigation at the browser trust boundary`() {
+        assertEquals(NavigationDecision.ALLOW_IN_APP, csfloatPolicy.decideNavigation("https://csfloat.com/inventory"))
+        assertEquals(NavigationDecision.ALLOW_IN_APP, csfloatPolicy.decideNavigation("http://login.steampowered.com/openid"))
+        assertEquals(NavigationDecision.OFFER_EXTERNAL, csfloatPolicy.decideNavigation("https://example.invalid/path"))
+        assertEquals(NavigationDecision.REJECT, csfloatPolicy.decideNavigation("mailto:synthetic@example.invalid"))
+        assertEquals(NavigationDecision.REJECT, csfloatPolicy.decideNavigation("intent://synthetic/#Intent;scheme=test;end"))
+        assertEquals(NavigationDecision.REJECT, csfloatPolicy.decideNavigation("https://user:secret@csfloat.com/private"))
+        assertEquals(NavigationDecision.REJECT, csfloatPolicy.decideNavigation("not a url"))
     }
 }

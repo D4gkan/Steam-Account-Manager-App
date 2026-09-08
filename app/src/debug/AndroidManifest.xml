@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <activity
+            android:name=".prototype.GeckoPrototypeRouterActivity"
+            android:exported="true"
+            android:label="Gecko profile isolation prototype">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".prototype.GeckoViewPrototypeActivity"
+            android:exported="false"
+            android:label="CSFloat GeckoView worker"
+            android:process=":gecko_prototype" />
+        <receiver
+            android:name=".prototype.PrototypeWorkerShutdownReceiver"
+            android:exported="false"
+            android:process=":gecko_prototype">
+            <intent-filter>
+                <action android:name="com.steamaccountmanager.app.debug.PROTOTYPE_SHUTDOWN" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

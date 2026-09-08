@@ -15,7 +15,7 @@ import com.steamaccountmanager.app.data.database.dao.WebsiteDao
  *
  * Deliberately does NOT store: Steam passwords, cookies, tokens, or any browser
  * storage. Those live either in the Android Keystore-backed encrypted store
- * (data.securestorage) or directly inside the WebView engine's own per-session
+ * (data.securestorage) or directly inside GeckoView's own per-session
  * data directories, which Room/this database never touches.
  */
 @Database(

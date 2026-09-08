@@ -7,11 +7,11 @@ import org.junit.Test
 
 /**
  * These tests exercise the identifier math behind session isolation directly.
- * They don't touch Android/WebView (that requires an instrumented test / a real
+ * They don't touch the Android browser engine (that requires an instrumented test / a real
  * device, see androidTest), but they pin down the invariant everything else
  * depends on: distinct (account, website) pairs must always resolve to distinct,
- * stable data-directory suffixes, and the same pair must always resolve to the
- * *same* suffix so a session is found again later.
+ * stable identifiers, and the same pair must always resolve to the same identifier
+ * so its persistent Gecko profile is found again later.
  */
 class SessionIdentifierTest {
 

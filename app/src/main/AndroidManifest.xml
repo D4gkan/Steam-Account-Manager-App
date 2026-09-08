@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
         android:name=".SteamAccountManagerApp"
@@ -21,9 +22,7 @@
 
         <!--
           MainActivity hosts all Compose UI (home, add account, website picker,
-          settings, app lock). It runs in the default process and never creates a
-          WebView itself, so it is never subject to WebView's per-process data
-          directory restriction.
+          settings, app lock). Browser engine work remains in the dedicated process.
         -->
         <activity
             android:name=".MainActivity"
@@ -38,18 +37,8 @@
         </activity>
 
         <!--
-          BrowserActivity is the ONLY component in the app that ever instantiates a
-          WebView, and it deliberately runs in its own process (":browser").
-
-          This is the crux of the session-isolation design: WebView.setDataDirectorySuffix()
-          may only be called once per process, before the first WebView is created in
-          that process (see README "Session Architecture" section). To give every
-          accountId+websiteId pair a genuinely separate cookie / localStorage / IndexedDB
-          / cache directory, BrowserActivity's process is deliberately restarted every
-          time the user switches to a different account+website pair, with a
-          freshly-computed suffix supplied via the launch Intent. Only one session is
-          ever resident in memory at a time, which also keeps memory use bounded even
-          with ~20 accounts x 5 websites = ~100 possible sessions.
+          BrowserActivity runs one isolated Gecko session in :browser. Switching sessions restarts this
+          worker so only one engine-owned profile is resident at a time.
         -->
         <activity
             android:name=".BrowserActivity"
@@ -60,10 +49,8 @@
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden" />
 
         <!--
-          Runs in the :browser process (see attribute below, which pins a
-          manifest-registered receiver to a specific process regardless of who
-          sends the broadcast). Used by BrowserProcessController to cleanly tear
-          down the browser process before restarting it for a different session.
+          Runs in :browser and requests graceful engine shutdown before a different
+          isolated session can be authorized.
         -->
         <receiver
             android:name=".browser.BrowserShutdownReceiver"
@@ -73,6 +60,9 @@
                 <action android:name="com.steamaccountmanager.app.action.SHUTDOWN_BROWSER_PROCESS" />
             </intent-filter>
         </receiver>
+
+        <receiver android:name=".browser.BrowserNotificationDismissReceiver"
+            android:exported="false" android:process=":browser" />
 
         <!-- Runs in the default process; receives the avatar-detection broadcast from :browser. -->
         <receiver

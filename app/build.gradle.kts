@@ -1,8 +1,10 @@
 import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("com.google.devtools.ksp")
 }
 
@@ -14,15 +16,13 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace = "com.steamaccountmanager.app"
-    // compileSdk 35 = Android 15, the current stable SDK at development time.
-    compileSdk = 35
+    // GeckoView 153 requires Android API 36 at compile time; targetSdk remains unchanged.
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.steamaccountmanager.app"
-        // minSdk 28 (Android 9 / Pie) is required because:
-        //  - WebView.setDataDirectorySuffix(), the mechanism this app relies on for
-        //    true per-process WebView storage isolation, was introduced in API 28.
-        //  - Biometric-grade Keystore key attestation and BiometricPrompt-class APIs
+        // minSdk 28 (Android 9 / Pie) is retained because biometric-grade Keystore
+        // key attestation and BiometricPrompt-class APIs
         //    are robust from API 28 onward (AndroidX Biometric back-ports some of this,
         //    but the underlying StrongBox-capable Keystore behavior is far more
         //    consistent from Pie onward).
@@ -64,7 +64,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.getByName("release").takeIf { it.storeFile != null }
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -74,16 +74,8 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
     buildFeatures {
         compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.14"
     }
 
     packaging {
@@ -111,12 +103,11 @@ dependencies {
     implementation("org.burnoutcrew.composereorderable:reorderable:0.9.6")
 
     // Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-runtime:2.8.4")
+    implementation("androidx.room:room-ktx:2.8.4")
+    ksp("androidx.room:room-compiler:2.8.4")
 
-    // WebView extras (WebViewClientCompat / WebResourceErrorCompat / feature checks)
-    implementation("androidx.webkit:webkit:1.11.0")
+    implementation("org.mozilla.geckoview:geckoview:153.0.20260810162159")
 
     // Security
     implementation("androidx.security:security-crypto:1.1.0-alpha06")
@@ -138,4 +129,10 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
+    }
 }

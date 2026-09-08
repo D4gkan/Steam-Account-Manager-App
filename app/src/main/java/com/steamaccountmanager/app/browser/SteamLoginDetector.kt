@@ -2,12 +2,11 @@ package com.steamaccountmanager.app.browser
 
 import android.content.Context
 import android.content.Intent
-import android.webkit.WebView
-import org.json.JSONObject
+import java.net.URI
 
 /**
- * Best-effort detection of a successful Steam login inside the isolated Steam
- * WebView session, so the app can automatically fetch the account's avatar
+ * Best-effort detection of a successful Steam login inside the isolated Gecko
+ * session, so the app can automatically fetch the account's avatar
  * (Section 6). This deliberately does NOT call any Steam Web API (which would
  * require an API key / backend) -- it just reads the logged-in page's own DOM,
  * the same information already visible to the user on screen.
@@ -25,53 +24,109 @@ object SteamLoginDetector {
     const val EXTRA_AVATAR_URL = "extra_avatar_url"
     const val EXTRA_STEAM_PROFILE_ID = "extra_steam_profile_id"
 
-    private const val DETECTION_SCRIPT = """
-        (function() {
-            try {
-                var avatarEl = document.querySelector('.playerAvatar img, .persona_name_text_content img, a.user_avatar img');
-                var avatarUrl = avatarEl ? avatarEl.src : null;
-                var profileEl = document.querySelector('a.user_avatar, a.persona_name');
-                var profileUrl = profileEl ? profileEl.href : null;
-                return JSON.stringify({avatarUrl: avatarUrl, profileUrl: profileUrl});
-            } catch (e) {
-                return JSON.stringify({avatarUrl: null, profileUrl: null});
-            }
-        })();
-    """
-
     /** Only worth attempting on steamcommunity.com pages that look like a logged-in view. */
     fun looksLikeLoggedInSteamPage(url: String?): Boolean {
-        if (url == null) return false
-        return url.contains("steamcommunity.com") &&
-            !url.contains("/login") &&
-            (url.contains("/id/") || url.contains("/profiles/") || url == "https://steamcommunity.com/")
+        val uri = safeHttpsUri(url) ?: return false
+        if (uri.host.lowercase() !in STEAM_COMMUNITY_HOSTS) return false
+        val path = uri.path.orEmpty()
+        return path == "/" || PROFILE_PATH.matches(path)
     }
 
-    fun tryDetect(webView: WebView, accountId: String, appContext: Context) {
-        webView.evaluateJavascript(DETECTION_SCRIPT) { rawResult ->
-            val unquoted = rawResult?.trim('"')?.replace("\\\"", "\"") ?: return@evaluateJavascript
-            if (unquoted == "null" || unquoted.isBlank()) return@evaluateJavascript
-            try {
-                val json = JSONObject(unquoted)
-                val avatarUrl = json.optString("avatarUrl", null.toString()).takeIf { it != "null" && it.isNotBlank() }
-                val profileUrl = json.optString("profileUrl", null.toString()).takeIf { it != "null" && it.isNotBlank() }
-                if (avatarUrl == null && profileUrl == null) return@evaluateJavascript
+    /** Parses only public metadata from the detector extension's JSON message. */
+    fun parseResult(raw: String?): SteamProfileResult? {
+        if (raw == null || raw.length > MAX_RAW_RESULT_LENGTH) return null
+        val json = unwrapJavascriptResult(raw) ?: return null
+        val avatarUrl = field(json, "avatarUrl")?.takeIf(::isSafeSteamAvatar)
+        val steamProfileId = field(json, "profileUrl")?.let(::validatedSteamProfileId)
+        return if (avatarUrl == null && steamProfileId == null) null else SteamProfileResult(avatarUrl, steamProfileId)
+    }
 
-                val steamProfileId = profileUrl
-                    ?.substringAfter("/id/", missingDelimiterValue = "")
-                    ?.ifBlank { profileUrl.substringAfter("/profiles/", missingDelimiterValue = "") }
-                    ?.trimEnd('/')
+    fun sendResult(result: SteamProfileResult, accountId: String, appContext: Context) {
+        result.send(accountId, appContext)
+    }
 
-                val intent = Intent(ACTION_STEAM_PROFILE_DETECTED).apply {
-                    setPackage(appContext.packageName)
-                    putExtra(EXTRA_ACCOUNT_ID, accountId)
-                    putExtra(EXTRA_AVATAR_URL, avatarUrl)
-                    putExtra(EXTRA_STEAM_PROFILE_ID, steamProfileId)
+    private fun SteamProfileResult.send(accountId: String, appContext: Context) {
+        val intent = Intent(ACTION_STEAM_PROFILE_DETECTED).apply {
+            setPackage(appContext.packageName)
+            putExtra(EXTRA_ACCOUNT_ID, accountId)
+            putExtra(EXTRA_AVATAR_URL, avatarUrl)
+            putExtra(EXTRA_STEAM_PROFILE_ID, steamProfileId)
+        }
+        appContext.sendBroadcast(intent)
+    }
+
+    private fun validatedSteamProfileId(value: String): String? {
+        val uri = safeHttpsUri(value) ?: return null
+        if (uri.host.lowercase() !in STEAM_COMMUNITY_HOSTS || uri.query != null || uri.fragment != null) return null
+        val match = PROFILE_PATH.matchEntire(uri.path.orEmpty()) ?: return null
+        return match.groupValues[1].ifBlank { match.groupValues[2] }
+    }
+
+    private fun isSafeSteamAvatar(value: String): Boolean {
+        val uri = safeHttpsUri(value) ?: return false
+        val host = uri.host.lowercase()
+        return uri.fragment == null &&
+            (host == "steamcdn-a.akamaihd.net" || host.endsWith(".steamstatic.com"))
+    }
+
+    private fun safeHttpsUri(value: String?): URI? = try {
+        if (value == null || value.length > MAX_URL_LENGTH) return null
+        URI(value).takeIf {
+            it.scheme.equals("https", ignoreCase = true) &&
+                it.host != null && it.rawUserInfo == null && it.port in setOf(-1, 443)
+        }
+    } catch (_: Exception) {
+        null
+    }
+
+    private fun unwrapJavascriptResult(raw: String?): String? {
+        val trimmed = raw?.trim()?.takeIf { it.isNotEmpty() && it != "null" } ?: return null
+        return if (trimmed.startsWith('"')) decodeJsonString(trimmed) else trimmed.takeIf { it.startsWith('{') && it.endsWith('}') }
+    }
+
+    private fun field(json: String, name: String): String? {
+        val match = Regex("\\\"${Regex.escape(name)}\\\"\\s*:\\s*(null|\\\"(?:\\\\.|[^\\\"\\\\])*\\\")")
+            .find(json) ?: return null
+        return match.groupValues[1].takeUnless { it == "null" }?.let(::decodeJsonString)
+    }
+
+    private fun decodeJsonString(literal: String): String? {
+        if (literal.length < 2 || literal.first() != '"' || literal.last() != '"') return null
+        val decoded = StringBuilder()
+        var index = 1
+        while (index < literal.lastIndex) {
+            val character = literal[index++]
+            if (character != '\\') {
+                decoded.append(character)
+                continue
+            }
+            if (index >= literal.lastIndex) return null
+            when (val escaped = literal[index++]) {
+                '"', '\\', '/' -> decoded.append(escaped)
+                'b' -> decoded.append('\b')
+                'f' -> decoded.append('\u000c')
+                'n' -> decoded.append('\n')
+                'r' -> decoded.append('\r')
+                't' -> decoded.append('\t')
+                'u' -> {
+                    if (index + 4 > literal.lastIndex) return null
+                    decoded.append(literal.substring(index, index + 4).toIntOrNull(16)?.toChar() ?: return null)
+                    index += 4
                 }
-                appContext.sendBroadcast(intent)
-            } catch (_: Exception) {
-                // Steam changed its markup or returned something unexpected -- ignore.
+                else -> return null
             }
         }
+        return decoded.toString()
     }
+
+    private val STEAM_COMMUNITY_HOSTS = setOf("steamcommunity.com", "www.steamcommunity.com")
+    private val PROFILE_PATH = Regex("^/(?:id/([A-Za-z0-9_-]{2,64})|profiles/([0-9]{17}))/?$")
+    // Keep hostile input below the recursive-regex range before field extraction.
+    private const val MAX_RAW_RESULT_LENGTH = 2_048
+    private const val MAX_URL_LENGTH = 2_048
 }
+
+data class SteamProfileResult(
+    val avatarUrl: String?,
+    val steamProfileId: String?,
+)

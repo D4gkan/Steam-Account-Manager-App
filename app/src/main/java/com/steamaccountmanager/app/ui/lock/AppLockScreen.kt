@@ -26,7 +26,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.steamaccountmanager.app.ui.theme.SteamAccent
@@ -107,15 +106,11 @@ private fun PinDots(length: Int, isError: Boolean) {
             Box(
                 modifier = Modifier
                     .size(12.dp)
-                    .clip(CircleShape)
-                    .then(Modifier.dotBackground(color)),
+                    .background(color, CircleShape),
             )
         }
     }
 }
-
-private fun Modifier.dotBackground(color: Color): Modifier =
-    this.then(background(color, CircleShape))
 
 @Composable
 private fun Keypad(onDigit: (String) -> Unit, onBackspace: () -> Unit) {
