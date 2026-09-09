@@ -1,44 +1,169 @@
+### ⚠️ Read this before you do anything else
+[](https://github.com/D4gkan/Steam-Desktop-Authenticator-2.0#%EF%B8%8F-read-this-before-you-do-anything-else)
+
+- **This project is not affiliated with, sponsored by, or endorsed by Valve Corporation or Steam.** It is an independent, community-run tool.
+
+<p align="center">
+  <img src="logo.png" alt="Steam Account Manager App logo" width="180">
+  <br>
+  <strong>Steam Account Manager App</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/D4gkan/Steam-Account-Manager-App/releases/latest"><img src="https://img.shields.io/github/v/release/D4gkan/Steam-Account-Manager-App?label=version" alt="Latest release"></a>
+  <a href="#supported-platforms"><img src="https://img.shields.io/badge/platforms-Windows%20%7C%20Linux%20%7C%20Android-2ea44f" alt="Supported platforms"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+  <a href="https://github.com/D4gkan/Steam-Account-Manager-App/issues"><img src="https://img.shields.io/github/issues/D4gkan/Steam-Account-Manager-App" alt="Open issues"></a>
+</p>
+
 # Steam Account Manager App
 
-<img src="logo.png" alt="Steam Account Manager App logo" width="180" />
+Steam Account Manager App helps you manage multiple Steam accounts from one place. Its intended use is to manage multiple Steam accounts across various websites, mainly for trading and marketplace workflows.
 
-One product, shipped as two separate builds: a Windows/Linux desktop app with persistent Chromium account profiles, and an Android app with isolated GeckoView website sessions. Both use the same branding and release version; their codebases and build tools remain separate.
+Each account gets its own persistent browser profile. That keeps cookies, website sessions, local storage, and supported extension state separated, so you can work with several accounts without mixing their sessions. The app does not automate trades, bypass Steam security, or replace Steam Guard: you sign in and confirm security prompts yourself.
 
-| Platform | Version | Purpose |
+## What you can do
+
+- Create and manage separate profiles for multiple Steam accounts.
+- Open the same set of trading and marketplace websites for one account or several accounts at once.
+- Select the websites you need and control the order in which their tabs open.
+- Reuse existing browser tabs and sessions instead of logging in again every time.
+- Keep account browser data persistent between app launches.
+- Detect the Steam identity in an account browser after you open your Steam profile.
+- Add, edit, remove, and reorder entries in the shared website catalog.
+- Add website icons, with placeholders available when an icon cannot be fetched.
+- Use bundled browser extensions for supported workflows, including BetterFloat, CS.Money, CS2 Trader, CSFloat Market Checker, Proton VPN, Skins.com Marketplace, Trade Token Sync, and CSGOEmpire Quick Buy.
+- Inspect extension package information and diagnostics from the desktop app.
+- Lock the Android app with a PIN or biometric authentication.
+- Keep Android website sessions isolated per account and website.
+
+The desktop app uses Electron and Chromium. The Android app uses GeckoView and keeps its browser profiles separate from the desktop app. Desktop and Android sessions are independent, so you may need to sign in again when moving between them.
+
+## Supported platforms
+
+| Platform | Release | Requirements |
 | --- | --- | --- |
-| Desktop — Windows / Linux | 1.1.0 | Manage isolated Steam account browser profiles and open an ordered selection of shared websites with bundled Chromium extensions. |
-| Mobile — Android | 1.1.0 (version code 2) | Manage isolated account/website sessions in GeckoView, with consent-based Firefox extensions and PIN/biometric app lock. |
+| Windows 10/11, x64 | `1.1.0` | A normal desktop Windows installation |
+| Linux, x64 | `1.1.0` | A Debian/Ubuntu-compatible desktop for `.deb`, or a compatible AppImage environment |
+| Android 9 or newer | `1.1.0` (version code 2) | Internet access for website sign-ins |
 
-Download installers from [GitHub Releases](https://github.com/D4gkan/Steam-Account-Manager-App/releases/tag/v1.1.0). This is an unofficial app, unaffiliated with Valve or Steam. Sign in and complete Steam Guard yourself; the desktop manager does not ask for Steam passwords or automate trades.
+Download the latest installers from [GitHub Releases](https://github.com/D4gkan/Steam-Account-Manager-App/releases/latest). The files currently available for v1.1.0 are:
 
-## Desktop (Windows / Linux)
+- Windows: `Steam Account Manager App-Setup-1.1.0.exe`
+- Linux: `steam-account-manager-app_1.1.0_amd64.deb` or `Steam Account Manager App-1.1.0.AppImage`
+- Android: `SAMApp-v1.1.0.apk`
 
-Source: [Desktop](Desktop/). Entry point: `Desktop/src/main/index.ts`; Electron runs the compiled `dist/main/main/index.js`.
+## Installation
 
-The Electron/React dashboard manages a shared website catalog and one persistent Chromium profile per account. Browser cookies, site storage, and extension state remain separate. Closing the manager leaves account browsers running; reopening it reconnects to them. Existing sessions can still expire or be revoked by websites.
+### Windows
 
-### Requirements and installation
+1. Download `Steam Account Manager App-Setup-1.1.0.exe` from the [v1.1.0 release](https://github.com/D4gkan/Steam-Account-Manager-App/releases/tag/v1.1.0).
+2. Run the installer. It is a per-user installer, so administrator access is normally not required.
+3. Choose an installation directory and let the installer create the Start Menu and desktop shortcuts.
+4. Open Steam Account Manager App and add your first account.
+5. Complete Steam login and Steam Guard in the account browser window. Do not enter your Steam password into the manager itself.
 
-- Windows x64: run `Steam Account Manager App-Setup-1.1.0.exe`. This is a per-user installer and is not code-signed.
-- Linux x64: use the `.deb` on a compatible Debian/Ubuntu desktop, or the `.AppImage`. Linux packages must be built on Linux so native libraries and executable permissions match the platform.
-- Packaged builds include Electron, Chromium, SQLite, the native bridge, and eight supplied extensions. A separate Node.js installation is not needed to run them.
-- Source builds require Node.js/npm. Node 22 was used for Linux builds; Node 25.2.1 was used on Windows. Native compilation may require the platform's C/C++ build tools when a prebuilt dependency is unavailable.
-- A graphical desktop and Chromium/Electron system libraries are needed on Linux. The Debian package declares its runtime dependencies. AppImage users must have compatible system libraries and sandbox support.
+The Windows installer is currently not code-signed, so Windows SmartScreen may show an extra confirmation. Confirm the publisher and file source before continuing.
 
-Linux installation/run examples:
+### Linux
+
+#### Debian or Ubuntu
+
+1. Download `steam-account-manager-app_1.1.0_amd64.deb` from the [v1.1.0 release](https://github.com/D4gkan/Steam-Account-Manager-App/releases/tag/v1.1.0).
+2. Open a terminal in the download directory.
+3. Install the package:
+
+   ```bash
+   sudo apt install ./steam-account-manager-app_1.1.0_amd64.deb
+   ```
+
+4. Start the app from your application menu, or run:
+
+   ```bash
+   steam-account-manager-app
+   ```
+
+#### AppImage
+
+1. Download `Steam Account Manager App-1.1.0.AppImage` from the [v1.1.0 release](https://github.com/D4gkan/Steam-Account-Manager-App/releases/tag/v1.1.0).
+2. Open a terminal in the download directory and make it executable:
+
+   ```bash
+   chmod +x "Steam Account Manager App-1.1.0.AppImage"
+   ```
+
+3. Launch it:
+
+   ```bash
+   ./"Steam Account Manager App-1.1.0.AppImage"
+   ```
+
+The Linux build is intended for x64 desktop systems. If the AppImage does not start, try the Debian package on a compatible Debian or Ubuntu system and check that your desktop has the libraries and sandbox support required by Electron and Chromium.
+
+### Android
+
+1. Download `SAMApp-v1.1.0.apk` from the [v1.1.0 release](https://github.com/D4gkan/Steam-Account-Manager-App/releases/tag/v1.1.0).
+2. Open the APK on your Android device.
+3. If Android asks, allow your browser or file manager to install apps from that source.
+4. Confirm the installation and open Steam Account Manager App.
+5. Create an account profile, then sign in to Steam and each website inside its own session.
+6. Set a PIN or enable biometrics from the app security settings if you want to protect the manager when it is closed.
+
+You can also install the APK with Android Debug Bridge:
 
 ```bash
-sudo apt install ./steam-account-manager-app_1.1.0_amd64.deb
-steam-account-manager-app
-
-# Or use the portable AppImage:
-chmod +x "Steam Account Manager App-1.1.0.AppImage"
-./"Steam Account Manager App-1.1.0.AppImage"
+adb install SAMApp-v1.1.0.apk
 ```
 
-### Build and run from source
+Version 1.1.0 uses a new Android release signing key. If you are upgrading from an older release, uninstall the old APK first. Android will remove that app's local data and sessions when it is uninstalled.
 
-Run these commands from `Desktop/`:
+## Using the app
+
+### Desktop workflow
+
+1. Select **Add account** and give the account a recognizable name.
+2. Open the account browser and complete Steam sign-in and Steam Guard manually.
+3. Open the Steam profile for that account. The manager uses the detected Steam identity to associate the browser with the account; use **Retry / refresh identity** if necessary.
+4. Select one or more account rows.
+5. Select the websites you want to open. Reorder the selection strip with drag and drop or its arrow controls.
+6. Choose **Open selected websites**. The manager creates or reuses the requested tabs for each selected account.
+7. Close the dashboard when you are finished. Account browsers can continue running, and their sessions remain available the next time you open the manager.
+
+### Android workflow
+
+Android stores local account information and a separate GeckoView browser profile for each account and website pair. Give each profile a clear name, open the websites you need, and complete their sign-ins inside the correct account session. Steam sign-in and marketplace sign-ins remain separate, and desktop browser sessions cannot be migrated automatically to Android.
+
+### Important session notes
+
+- The manager never asks for or stores Steam passwords. Enter credentials only on the official Steam or website sign-in page.
+- Existing sessions can expire or be revoked by Steam or third-party websites.
+- Deleting an account removes local browser data and sessions; it does not delete the Steam account.
+- Closing the manager does not automatically close desktop account browser windows.
+- Extensions being installed or loaded does not guarantee that a third-party website is authenticated or working.
+- The app does not provide trade automation, cookie export, credential export, or an Always Online feature.
+
+## Privacy and local data
+
+Desktop data is stored locally at `%APPDATA%/SteamAccountManagerApp` on Windows and at `$XDG_CONFIG_HOME/SteamAccountManagerApp` or `~/.config/SteamAccountManagerApp` on Linux. Android data is managed by Android's app storage.
+
+The app uses isolated local browser profiles, SQLite, and a restricted Electron preload API. It does not send your Steam password to the manager. Review the [desktop architecture](Desktop/ARCHITECTURE.md), [limitations](Desktop/LIMITATIONS.md), and [third-party notices](Desktop/THIRD-PARTY-NOTICES.md) for more detail.
+
+## Uninstalling
+
+- **Windows:** uninstall from Windows Settings or the app's uninstaller. The prompt lets you keep or erase local account browsers, cookies, extension settings, and cached data. Keeping data is the default.
+- **Debian/Ubuntu:** remove the package through your package manager. Use the included `uninstall-linux.sh` helper when you also want to choose whether local data should be erased.
+- **AppImage:** deleting the AppImage does not remove app data. Download `uninstall-linux.sh` from the release and run `bash uninstall-linux.sh --appimage "/absolute/path/Steam Account Manager App-1.1.0.AppImage"`.
+- **Android:** uninstalling the app removes its local data and sessions.
+
+Close the manager and all account browser windows before erasing data.
+
+## Build from source
+
+Source builds are intended for contributors and developers. Packaged releases already include Electron, Chromium, SQLite, the native bridge, and the supplied extensions.
+
+### Desktop development
+
+Requirements: Node.js/npm and a graphical desktop. Run from `Desktop/`:
 
 ```bash
 npm ci
@@ -47,101 +172,38 @@ npm run build
 npm start
 ```
 
-If Chromium is not bundled, account setup downloads the pinned Playwright runtime into this app's per-user storage. To bundle Chromium before packaging:
-
-```powershell
-# Windows PowerShell, from Desktop/
-$env:PLAYWRIGHT_BROWSERS_PATH = "$PWD/resources/runtime"
-npx playwright-core install chromium
-npm run package:win
-```
+For a Linux package, build on Linux from `Desktop/`:
 
 ```bash
-# Linux, from Desktop/; installs dependencies/runtime, tests, and packages:
 bash packaging/linux-build.sh
 ```
 
-Output: `Desktop/release/`. The Linux script produces an AppImage and a Debian package. Useful checks include `npm run typecheck`, `npm test`, `npm run test:database`, `npm run test:smoke`, `npm run test:browser`, and `npm run test:packaged` (Windows executable by default).
+For Windows packaging, use PowerShell from `Desktop/`:
 
-### Uninstalling desktop builds
-
-**Windows:** uninstall through Windows Settings or the installed uninstaller. It asks whether to erase this Windows user's saved accounts, browser sessions/cookies, extension settings, and cached files. **No / keep data is the default.** Close all account browsers before choosing to erase. Updates and silent uninstall preserve data. Linked paths or data still in use are preserved with an error message.
-
-**Linux Debian package:** interactive removal asks about the invoking user's data when the package manager supplies the user identity and a terminal or supported graphical prompt is available. Updates, unattended removal, and removal without an identifiable desktop user preserve data. Other users' data is not deleted.
-
-**Linux AppImage:** deleting an AppImage directly cannot display an uninstall prompt. Download `uninstall-linux.sh` from the release and use the helper to remove the file and choose whether to erase your data:
-
-```bash
-bash uninstall-linux.sh --appimage "/absolute/path/Steam Account Manager App-1.1.0.AppImage"
-
-# Also usable after removing the Debian package; asks before erasing data:
-bash uninstall-linux.sh --data-only
+```powershell
+npm ci
+npm run package:win
 ```
 
-Run the helper as your desktop user, with your usual `XDG_CONFIG_HOME` if customized. It uses Zenity or KDialog when available, or asks you to type `ERASE` in a terminal. With no prompt available it keeps data. Keep the AppImage path absolute. Close the manager and account browsers first. This only erases local app data, never the Steam account itself.
+Useful checks are `npm run typecheck`, `npm test`, `npm run test:database`, and `npm run test:browser`.
 
-Data locations: `%APPDATA%/SteamAccountManagerApp` on Windows; `$XDG_CONFIG_HOME/SteamAccountManagerApp` or `~/.config/SteamAccountManagerApp` on Linux. Custom `--user-data-dir` test/development directories are not erased by uninstall.
+### Android development
 
-For usage and architecture details, see [Desktop notes](Desktop/NOTES.md), [architecture](Desktop/ARCHITECTURE.md), and [third-party notices](Desktop/THIRD-PARTY-NOTICES.md). Earlier validation limitations remain in [LIMITATIONS.md](Desktop/LIMITATIONS.md); the current results are below.
-
-## Mobile (Android)
-
-Source: [Mobile](Mobile/). Launcher: `Mobile/app/src/main/java/com/steamaccountmanager/app/MainActivity.kt`; application setup: `SteamAccountManagerApp.kt` in the same directory.
-
-The Kotlin/Compose app uses local account metadata and a distinct GeckoView browser profile for each account/website pair. It supports the official Firefox CSFloat, CS.MONEY, and Skins.com packages with explicit session consent, plus PIN and biometric locking. Steam sign-in is separate from marketplace sign-ins. Existing WebView sign-ins cannot migrate to GeckoView; users must sign in again.
-
-### Requirements and build
-
-- Android 9+ (minimum SDK 28), with internet access for website sign-ins.
-- Build with JDK 21 and Android SDK 36; target SDK is 35.
-- Set `JAVA_HOME` and `ANDROID_HOME` to your local installations.
-
-Run from `Mobile/`:
+Requirements: JDK 21 and Android SDK 36. Run from `Mobile/`:
 
 ```bash
 ./gradlew testDebugUnitTest lintDebug assembleDebug
 ./gradlew assembleRelease
 ```
 
-On Windows, use `./gradlew.bat` instead. Outputs are in `Mobile/app/build/outputs/apk/`. Debug builds have application ID `com.steamaccountmanager.app.debug`; release uses `com.steamaccountmanager.app`.
+On Windows, use `gradlew.bat` instead of `./gradlew`. Release signing requires the `SAMAPP_RELEASE_*` environment variables or a local, ignored `Mobile/keystore.properties` file. Never commit signing keys or passwords.
 
-Release signing uses the existing `SAMAPP_RELEASE_STORE_FILE`, `SAMAPP_RELEASE_STORE_PASSWORD`, `SAMAPP_RELEASE_KEY_ALIAS`, and `SAMAPP_RELEASE_KEY_PASSWORD` environment variables, or ignored `Mobile/keystore.properties` (`storeFile`, `storePassword`, `keyAlias`, `keyPassword`). Keep the signing key and passwords outside Git. Without signing configuration Gradle produces an unsigned APK, which is not the downloadable signed release.
+## Contributing
 
-### Install
+Found a bug, have a feature idea, or need support for another website? Please [open an issue](https://github.com/D4gkan/Steam-Account-Manager-App/issues) with clear reproduction steps, your operating system, app version, and relevant logs. Do not include Steam passwords, session cookies, access tokens, or private account information.
 
-Download `SAMApp-v1.1.0.apk`, allow installation from the chosen source if Android requests it, and install. Alternatively:
-
-```bash
-adb install SAMApp-v1.1.0.apk
-```
-
-**v1.1.0 uses a new release signing key. Uninstall the old release APK before installing this one. Uninstalling Android removes that app's local data and sessions.** Future releases should reuse this new signing key to support in-place updates.
-
-See [Mobile notes](Mobile/NOTES.md), the [architecture/upgrade contract](Mobile/docs/adr/0001-adopt-geckoview-for-csfloat.md), and [manual acceptance checklist](Mobile/docs/manual-testing/geckoview-final-release.md). Authenticated vendor-site behavior and physical-device acceptance still require manual checks; emulator startup does not establish those claims.
-
-## v1.1.0 verification
-
-- Windows: type checks and 49 unit/cleanup tests passed; database and dashboard smoke checks passed. The browser lifecycle test passed for two isolated profiles, tab order/reuse, reconnecting after the manager exits, and browser-restart cookie persistence. The final packaged executable passed its smoke test, including the native host, all eight extensions, site launch, and manager restart/reconnection.
-- Linux: native AppImage and Debian builds passed in Ubuntu under WSL2, as did type checks, 50 unit/cleanup tests, and SQLite checks. The packaged dashboard launched as a non-root user with the Chromium sandbox enabled. The final packaged smoke test passed for SQLite, IPC, the native host, all eight extensions, site launch, and manager restart/reconnection. WSL verification does not certify every X11/Wayland desktop or distribution.
-- Android: 74 JVM tests, lint (0 errors, 127 warnings, 3 hints), debug and signed release builds passed. The signed release APK installed and launched on the emulator; 12 selected instrumentation tests passed. Existing build warnings include Room schema export configuration and Kotlin/R8 metadata compatibility.
-- Cleanup checks use disposable fixtures and verify that declining/noninteractive removal keeps data, consent erases only the app directory, and linked roots/targets are preserved. Windows graphical installer prompts and every Linux package-manager GUI still require manual acceptance.
-- The existing desktop packaged smoke check expected 11 catalog entries instead of 8; its assertion was corrected. Chromium could exit before connecting its companion when launched without a window. The approved fix starts a blank window and lets the existing `start_fresh` logic replace its tabs.
-- Linux packaging now unpacks the image-processing library's native dependencies so the dynamic loader can find libvips. Native bridge manifests are written inside each account's browser data directory, matching Chromium's Linux lookup path. The package homepage is set for Debian packaging.
-- Real Steam/Steam Guard sign-ins and authenticated third-party extension behavior were not exercised in this release verification. Historical extension provenance files record earlier inspections; documentation files named `README.md` were renamed to `NOTES.md` during consolidation, so historical package digests are not claims about the renamed tree.
-
-## Repository structure
-
-```text
-Steam Account Manager App/
-├── README.md
-├── logo.png
-├── LICENSE
-├── Desktop/       # Electron / TypeScript / React, Windows and Linux
-└── Mobile/        # Kotlin / Compose / GeckoView, Android
-```
-
-The existing Android Git history is preserved; its project now lives in `Mobile/`. Existing uncommitted Mobile work was retained and is included in the tested APK. Both original app icons remain in place for packaging. This is the only repository README; platform-specific documentation is retained as `NOTES.md`. Dependencies, downloaded runtimes, build outputs, and signing credentials are ignored.
+For code, documentation, translations, and new features, feel free to open a [pull request](https://github.com/D4gkan/Steam-Account-Manager-App/pulls). Keep changes focused, explain the user-facing benefit, and include tests or verification steps where practical.
 
 ## License
 
-Both apps' own code is covered by the [MIT License](LICENSE), copyright 2026 Steam Account Manager contributors. Bundled libraries, browser runtimes, and extensions retain their own licenses and notices; see [third-party notices](Desktop/THIRD-PARTY-NOTICES.md). Applying MIT to the apps does not relicense third-party packages.
+The app's own code is released under the [MIT License](LICENSE). Bundled libraries, browser runtimes, and extensions retain their own licenses; see [third-party notices](Desktop/THIRD-PARTY-NOTICES.md).
