@@ -1,5 +1,3 @@
-[](https://github.com/D4gkan/Steam-Desktop-Authenticator-2.0#%EF%B8%8F-read-this-before-you-do-anything-else)
-
 <div align="center">
   <img src="logo.png" alt="Steam Account Manager App logo" width="180">
   <br>
@@ -8,9 +6,17 @@
 </div>
 
 <p align="center">
-   <a href="https://github.com/D4gkan/Steam-Account-Manager-App/releases/tag/v1.1.0"><img src="https://img.shields.io/badge/version-v1.1.0-2ea44f" alt="Current version v1.1.0"></a>
-  <a href="#supported-platforms"><img src="https://img.shields.io/badge/platforms-Windows%20%7C%20Linux%20%7C%20Android-2ea44f" alt="Supported platforms"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
+  <a href="https://github.com/D4gkan/Steam-Account-Manager-App/releases/latest"><img src="https://img.shields.io/github/v/release/D4gkan/Steam-Account-Manager-App?label=release&color=2ea44f" alt="Latest release"></a>
+  <a href="https://github.com/D4gkan/Steam-Account-Manager-App/releases"><img src="https://img.shields.io/github/downloads/D4gkan/Steam-Account-Manager-App/total?color=2ea44f&label=downloads" alt="Total downloads"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/D4gkan/Steam-Account-Manager-App?color=blue" alt="MIT License"></a>
+  <a href="https://github.com/D4gkan/Steam-Account-Manager-App/commits/main"><img src="https://img.shields.io/github/last-commit/D4gkan/Steam-Account-Manager-App?color=blue" alt="Last commit"></a>
+  <a href="https://github.com/D4gkan/Steam-Account-Manager-App/issues"><img src="https://img.shields.io/github/issues/D4gkan/Steam-Account-Manager-App?color=yellow" alt="Open issues"></a>
+  <a href="https://github.com/D4gkan/Steam-Account-Manager-App/stargazers"><img src="https://img.shields.io/github/stars/D4gkan/Steam-Account-Manager-App?color=orange" alt="Stars"></a>
+</p>
+<p align="center">
+  <a href="#installation"><img src="https://img.shields.io/badge/Windows-10%2F11-0078D6?logo=windows&logoColor=white" alt="Windows"></a>
+  <a href="#installation"><img src="https://img.shields.io/badge/Linux-x64-FCC624?logo=linux&logoColor=black" alt="Linux"></a>
+  <a href="#installation"><img src="https://img.shields.io/badge/Android-9%2B-3DDC84?logo=android&logoColor=white" alt="Android"></a>
 </p>
 
 Steam Account Manager App helps you manage multiple Steam accounts from one place. Its intended use is to manage multiple Steam accounts across various websites, mainly for trading and marketplace workflows.
