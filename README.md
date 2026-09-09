@@ -1,4 +1,3 @@
-### ⚠️ Read this before you do anything else
 [](https://github.com/D4gkan/Steam-Desktop-Authenticator-2.0#%EF%B8%8F-read-this-before-you-do-anything-else)
 
 <div align="center">
@@ -9,7 +8,7 @@
 </div>
 
 <p align="center">
-  <a href="https://github.com/D4gkan/Steam-Account-Manager-App/releases/latest"><img src="https://img.shields.io/github/v/release/D4gkan/Steam-Account-Manager-App?label=version" alt="Latest release"></a>
+   <a href="https://github.com/D4gkan/Steam-Account-Manager-App/releases/tag/v1.1.0"><img src="https://img.shields.io/badge/version-v1.1.0-2ea44f" alt="Current version v1.1.0"></a>
   <a href="#supported-platforms"><img src="https://img.shields.io/badge/platforms-Windows%20%7C%20Linux%20%7C%20Android-2ea44f" alt="Supported platforms"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
 </p>
@@ -39,9 +38,9 @@ The desktop app uses Electron and Chromium. The Android app uses GeckoView and k
 
 | Platform | Release | Requirements |
 | --- | --- | --- |
-| Windows 10/11, x64 | `1.1.0` | A normal desktop Windows installation |
-| Linux, x64 | `1.1.0` | A Debian/Ubuntu-compatible desktop for `.deb`, or a compatible AppImage environment |
-| Android 9 or newer | `1.1.0` (version code 2) | Internet access for website sign-ins |
+| Windows 10/11, x64 | `v1.1.0` | A normal desktop Windows installation |
+| Linux, x64 | `v1.1.0` | A Debian/Ubuntu-compatible desktop for `.deb`, or a compatible AppImage environment |
+| Android 9 or newer | `v1.1.0` (version code 2) | Internet access for website sign-ins |
 
 Download the latest installers from [GitHub Releases](https://github.com/D4gkan/Steam-Account-Manager-App/releases/latest). The files currently available for v1.1.0 are:
 
