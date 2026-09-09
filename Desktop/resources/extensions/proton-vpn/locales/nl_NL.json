@@ -1,0 +1,656 @@
+{
+	"headers": {
+		"plural-forms": "nplurals=2; plural=(n != 1);",
+		"language": "nl_NL"
+	},
+	"contexts": {
+		"Action": {
+			"${linkDescription} (New tab)": [
+				"${linkDescription} (Nieuw tabblad)"
+			],
+			"Add": [
+				"Voeg toe"
+			],
+			"Add website": [
+				"Website toevoegen"
+			],
+			"Already have a Proton Account?": [
+				"Heeft u al een Proton Account?"
+			],
+			"Cancel": [
+				"Annuleren"
+			],
+			"Change language": [
+				"Taal wijzigen"
+			],
+			"Change server": [
+				"Server wijzigen"
+			],
+			"Configure split tunneling": [
+				"Split tunneling configureren"
+			],
+			"Confirm choices": [
+				"Keuzes bevestigen"
+			],
+			"Connect": [
+				"Verbinden"
+			],
+			"Contact us": [
+				"Contacteer ons"
+			],
+			"Create an account": [
+				"Een account aanmaken"
+			],
+			"Disable auto-connect": [
+				"Schakel automatisch verbinden uit"
+			],
+			"Disable notifications": [
+				"Schakel meldingen uit"
+			],
+			"Disable Split tunneling": [
+				"Split tunneling uitschakelen"
+			],
+			"Disable WebRTC leak protection": [
+				"Schakel bescherming tegen WebRTC lekken uit"
+			],
+			"Disconnect": [
+				"Verbinding verbreken"
+			],
+			"Enable auto-connect": [
+				"Schakel automatisch verbinden in"
+			],
+			"Enable notifications": [
+				"Schakel meldingen in"
+			],
+			"Enable Split tunneling": [
+				"Split tunneling inschakelen"
+			],
+			"Enable WebRTC leak protection": [
+				"Schakel bescherming tegen WebRTC lekken in"
+			],
+			"Log in with Proton": [
+				"Aanmelden met Proton"
+			],
+			"Manage subscription": [
+				"Abonnement beheren"
+			],
+			"New to Proton?": [
+				"Nieuw bij Proton?"
+			],
+			"Next": [
+				"Volgende"
+			],
+			"Quick connect": [
+				"Snel verbinden"
+			],
+			"Remove": [
+				"Verwijderen"
+			],
+			"Remove ${domain}": [
+				"Verwijder ${domain}"
+			],
+			"Select a city in ${exitCountryName}": [
+				"Selecteer een stad in ${exitCountryName}"
+			],
+			"Select a server in ${cityName}": [
+				"Selecteer een server in ${cityName}"
+			],
+			"Select entry country with exit in ${exitCountryName}": [
+				"Selecteer beginland met een exit in ${exitCountryName}"
+			],
+			"Sign in": [
+				"Inloggen"
+			],
+			"Sign in with Vivaldi": [
+				"Log in met Vivaldi"
+			],
+			"Sign out": [
+				"Uitloggen"
+			],
+			"Subscribe to connect more devices": [
+				"Abonneer om meer apparaten te verbinden"
+			],
+			"Subscribe to enable Browser Extension": [
+				"Abonneer om de browserextensie in te schakelen"
+			],
+			"Switch account": [
+				"Account wisselen"
+			],
+			"Update": [
+				"Bijwerken"
+			],
+			"Upgrade": [
+				"Upgraden"
+			],
+			"Upgrade to Proton VPN Plus": [
+				"Upgraden naar Proton VPN Plus"
+			],
+			"Visit Support Center": [
+				"Bezoek het helpcentrum"
+			]
+		},
+		"Action: City-level button": {
+			"Connect to ${cityName}": [
+				"Verbinden met ${cityName}"
+			]
+		},
+		"Action: Country-level button": {
+			"Connect to \"${mode}\"": [
+				"Verbinden met ${mode}\""
+			],
+			"Connect to ${countryName}": [
+				"Verbinden met ${countryName}"
+			],
+			"Connect to ${exitCountryName}": [
+				"Verbinden met ${exitCountryName}"
+			],
+			"Connect to ${logical.Name}": [
+				"Verbinden met ${logical.Name}"
+			],
+			"Connect to the fastest country": [
+				"Maak verbinding met het snelste land"
+			]
+		},
+		"Action: Server-level button": {
+			"Connect to ${serverName}": [
+				"Verbinden met ${serverName}"
+			]
+		},
+		"Alternative text for the search (magnifying glass) icon": {
+			"Search": [
+				"Zoeken"
+			]
+		},
+		"Confirm": {
+			"Logging out of the application will disconnect the active VPN connection. Do you want to continue?": [
+				"Uitloggen van de applicatie zal de actieve VPN-verbinding verbreken. Wilt u doorgaan?"
+			]
+		},
+		"Error": {
+			"${countries} country": [
+				"${countries} land",
+				"${countries} landen"
+			],
+			"${serversCount} secure server": [
+				"${serversCount} beveiligde server",
+				"${serversCount} beveiligde servers"
+			],
+			"${servers}+ secure server": [
+				"${servers}+ veilige server",
+				"${servers}+ veilige servers"
+			],
+			"Access over ${servers} in ${countries}": [
+				"Toegang tot meer dan ${servers} in ${countries}"
+			],
+			"Bypass online censorship with advanced security and privacy features": [
+				"Omzeil online censuur met geavanceerde beveiligings- en privacyfuncties"
+			],
+			"Connect from your browser with ${planName}": [
+				"Verbind vanuit uw browser met ${planName}"
+			],
+			"Network error.": [
+				"Netwerkfout."
+			],
+			"Network is unreachable": [
+				"Netwerk niet bereikbaar"
+			],
+			"No results found": [
+				"Geen resultaten"
+			],
+			"Not able to control the browser network settings, possibly a permission is missing": [
+				"Niet in staat om de browser-netwerkinstelllingen over te nemen, wellicht een ontbrekende toestemming"
+			],
+			"Please check your connectivity": [
+				"Controleer uw connectiviteit"
+			],
+			"Please try a different keyword": [
+				"Probeer een ander sleutelwoord."
+			],
+			"Server not found": [
+				"Server niet gevonden"
+			],
+			"Service temporarily unavailable": [
+				"Dienst tijdelijk niet beschikbaar"
+			],
+			"Something went wrong. If the problem persists, please try to re-install the extension": [
+				"Er is iets fout gegaan. Als het probleem aanhoudt, probeer de extensie opnieuw te installeren"
+			],
+			"Unable to find appropriate server, try to logout and login again if it persists.": [
+				"Kan de juiste server niet vinden, probeer opnieuw uit- en in te loggen als het zich voor blijft doen."
+			],
+			"Unable to load the list": [
+				"Kan de lijst niet laden"
+			],
+			"Unable to login": [
+				"Inloggen niet mogelijk"
+			],
+			"Unable to reach the server, please try to reconnect, or to log out and log in again if the problem persists": [
+				"Kon de server niet bereiken, probeer opnieuw te verbinden, of log uit en log opnieuw in als het probleem blijft aanhouden"
+			],
+			"Unlock ${servers} in ${countries}": [
+				"Ontgrendel ${servers} in ${countries}"
+			],
+			"Unlock global streaming services": [
+				"Ontgrendel wereldwijde streamingdiensten"
+			]
+		},
+		"Info": {
+			"<div class=\"weak-text\">\n<span data-trans>About free connections</span>\n<svg width=\"15\" height=\"14\" viewBox=\"0 0 15 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path \t\t\t\t\t\t\t\t\t\tfill-rule=\"evenodd\"\nclip-rule=\"evenodd\"\nd=\"M7.5 13C10.8137 13 13.5 10.3137 13.5 7C13.5 3.68629 10.8137 1 7.5 1C4.18629 1 1.5 3.68629 1.5 7C1.5 10.3137 4.18629 13 7.5 13ZM7.5 14C11.366 14 14.5 10.866 14.5 7C14.5 3.13401 11.366 0 7.5 0C3.63401 0 0.5 3.13401 0.5 7C0.5 10.866 3.63401 14 7.5 14ZM9.24995 10C9.24995 10.3038 9.00371 10.55 8.69995 10.55H7.69995H6.69995C6.39619 10.55 6.14995 10.3038 6.14995 10C6.14995 9.69624 6.39619 9.45 6.69995 9.45H7.14995L7.14995 6.55H6.99994C6.69618 6.55 6.44994 6.30376 6.44994 6C6.44994 5.69624 6.69618 5.45 6.99994 5.45H7.69995C7.84582 5.45 7.98571 5.50795 8.08886 5.61109C8.19201 5.71424 8.24995 5.85413 8.24995 6L8.24995 9.45H8.69995C9.00371 9.45 9.24995 9.69624 9.24995 10ZM7.5 4.40002C7.8866 4.40002 8.2 4.08662 8.2 3.70002C8.2 3.31343 7.8866 3.00002 7.5 3.00002C7.1134 3.00002 6.8 3.31343 6.8 3.70002C6.8 4.08662 7.1134 4.40002 7.5 4.40002Z\"\nfill=\"#A7A4B5\" ></path>\n</svg>\n</div>": [
+				"<div class=\"weak-text\">\n<span data-trans>Over gratis verbindingen</span>\n<svg width=\"15\" height=\"14\" viewBox=\"0 0 15 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path \t\t\t\t\t\t\t\t\t\tfill-rule=\"evenodd\"\nclip-rule=\"evenodd\"\nd=\"M7.5 13C10.8137 13 13.5 10.3137 13.5 7C13.5 3.68629 10.8137 1 7.5 1C4.18629 1 1.5 3.68629 1.5 7C1.5 10.3137 4.18629 13 7.5 13ZM7.5 14C11.366 14 14.5 10.866 14.5 7C14.5 3.13401 11.366 0 7.5 0C3.63401 0 0.5 3.13401 0.5 7C0.5 10.866 3.63401 14 7.5 14ZM9.24995 10C9.24995 10.3038 9.00371 10.55 8.69995 10.55H7.69995H6.69995C6.39619 10.55 6.14995 10.3038 6.14995 10C6.14995 9.69624 6.39619 9.45 6.69995 9.45H7.14995L7.14995 6.55H6.99994C6.69618 6.55 6.44994 6.30376 6.44994 6C6.44994 5.69624 6.69618 5.45 6.99994 5.45H7.69995C7.84582 5.45 7.98571 5.50795 8.08886 5.61109C8.19201 5.71424 8.24995 5.85413 8.24995 6L8.24995 9.45H8.69995C9.00371 9.45 9.24995 9.69624 9.24995 10ZM7.5 4.40002C7.8866 4.40002 8.2 4.08662 8.2 3.70002C8.2 3.31343 7.8866 3.00002 7.5 3.00002C7.1134 3.00002 6.8 3.31343 6.8 3.70002C6.8 4.08662 7.1134 4.40002 7.5 4.40002Z\"\nfill=\"#A7A4B5\" ></path>\n</svg>\n</div>"
+			],
+			"A subdomain URL includes a prefix before the main domain name. For example, account.proton.me is a subdomain of proton.me.": [
+				"Een subdomein-URL bevat een voorvoegsel vóór de hoofddomeinnaam. Bijvoorbeeld, account.proton.me is een subdomein van proton.me."
+			],
+			"About free connections": [
+				"Over gratis verbindingen"
+			],
+			"Access over 13,000 secure servers in over 120 countries": [
+				"Toegang tot meer dan 13 000 veilige servers in meer dan 120 landen."
+			],
+			"Access Proton VPN via this icon": [
+				"Toegang tot Proton VPN via dit icoon"
+			],
+			"Allow VPN permissions": [
+				"VPN-machtigingen toestaan"
+			],
+			"Also add subdomains": [
+				"Voeg ook subdomeinen toe"
+			],
+			"and more": [
+				"en meer"
+			],
+			"Audited by independent security experts": [
+				"Gecontroleerd door onafhankelijke beveiligingsexperts"
+			],
+			"Auto-selected from": [
+				"Automatisch geselecteerd uit"
+			],
+			"Automatically reconnect to Proton VPN when you open your browser.": [
+				"Automatisch herverbinden met Proton VPN wanneer u de browser opent."
+			],
+			"Back": [
+				"Terug"
+			],
+			"Browse through the Support Center and find answers to frequently asked questions.": [
+				"Browse door ons helpcentrum en vind antwoorden op vaak gestelde vragen."
+			],
+			"Bypass censorship with advanced security and privacy features": [
+				"Omzeil censuur met geavanceerde beveiligings- en privacyfuncties"
+			],
+			"Clear all recent connections and don't keep local history": [
+				"Wis alle recente verbindingen en bewaar geen lokale geschiedenis."
+			],
+			"Clear search": [
+				"Zoekveld leegmaken"
+			],
+			"Close": [
+				"Sluiten"
+			],
+			"Connect to a Plus server in this country to start streaming.\n\nHint: Clear the cache of the streaming apps to ensure new content appears.": [
+				"Maak verbinding met een Plus-server in dit land om het streamen te starten.\n\nTip: Wis de cache van de streaming-apps om ervoor te zorgen dat nieuwe inhoud wordt weergegeven."
+			],
+			"Connected": [
+				"Verbonden"
+			],
+			"Connected to ${name}": [
+				"Verbonden met ${name}"
+			],
+			"Connected to ${name} in ${city}": [
+				"Verbonden met ${name} in ${city}"
+			],
+			"Connecting servers such as ${logical.Name} is not currently supported in the browser extension": [
+				"Het verbinden van servers zoals ${logical.Name} wordt momenteel niet ondersteund in de browserextensie."
+			],
+			"Connecting to dedicated IPs such as ${logical.Name} is not currently supported in the browser extension": [
+				"Verbinden met vaste IPs zoals ${logical.Name} wordt momenteel niet ondersteund in de browserextensie."
+			],
+			"Connecting...": [
+				"Verbinden..."
+			],
+			"Contact our Customer Support agents to help you out with Proton VPN.": [
+				"Neem contact op met onze klantenondersteuningsagenten om u te helpen met Proton VPN."
+			],
+			"Crash": [
+				"Crash"
+			],
+			"Crash reports contain diagnostic information (stack traces, browser type, extension version). They do not contain your IP address and no Proton account identifier is attached. We'll never share them with third parties.": [
+				"Crashrapporten bevatten diagnostische informatie (stacktraces, browsertype, extensieversie). Ze bevatten niet uw IP-adres en er is geen Proton-account-ID aan gekoppeld. Wij delen ze nooit met derden."
+			],
+			"Crash reports help us fix bugs, detect firewalls, and avoid VPN blocks.": [
+				"Crashrapporten helpen ons om bugs op te lossen, firewalls te detecteren en VPN-blokkeringen te vermijden."
+			],
+			"Decide which websites are protected by VPN.": [
+				"Bepaal welke websites door VPN worden beschermd."
+			],
+			"Disable Secure Core": [
+				"Schakel Secure Core uit"
+			],
+			"Disconnected": [
+				"Verbinding verbroken"
+			],
+			"Disconnected by another extension": [
+				"Verbinding verbroken door een andere extensie"
+			],
+			"Disconnected by another extension, it connected to ${newProxyName}": [
+				"Verbinding verbroken door een andere extensie, die verbinding maakte met ${newProxyName}"
+			],
+			"Disconnected, settings were overridden": [
+				"Verbinding verbroken, instellingen zijn overschreven"
+			],
+			"Disconnected, settings were overridden to ${newProxyName}": [
+				"Verbinding verbroken, instellingen zijn overschreven naar ${newProxyName}"
+			],
+			"Emit system notifications on connection and disconnection events.": [
+				"Systeemmeldingen sturen bij verbindingsgebeurtenissen."
+			],
+			"Enable Secure Core": [
+				"Schakel Secure Core in"
+			],
+			"Enjoying Proton VPN?": [
+				"Geniet u van Proton VPN?"
+			],
+			"Exclude mode": [
+				"Uitsluit-modus"
+			],
+			"Extra protection for people with advanced privacy needs": [
+				"Extra bescherming voor mensen met geavanceerde privacynoden"
+			],
+			"Fastest free server": [
+				"Snelste gratis server"
+			],
+			"Follow these simple steps to get the best experience using Proton VPN": [
+				"Volg deze eenvoudige stappen om de beste ervaring te krijgen met Proton VPN"
+			],
+			"Free server countries (<span id=\"free-server-countries-count\">0</span>)": [
+				"Landen met gratis server (<span id=\"free-server-countries-count\">0</span>)"
+			],
+			"Get unlimited server changes with VPN Plus": [
+				"Profiteer van onbeperkte serverwijzigingen met VPN Plus"
+			],
+			"Get worldwide coverage with VPN Plus": [
+				"Krijg wereldwijde dekking met VPN Plus"
+			],
+			"Help": [
+				"Hulp"
+			],
+			"Help us fight censorship": [
+				"Help ons censuur te bestrijden"
+			],
+			"Help us improve Proton VPN": [
+				"Help ons Proton VPN te verbeteren"
+			],
+			"High performance Swiss VPN that protects your privacy. Maximum security, more than ${count} server and no restrictions.": [
+				"Zwitserse VPN met hoge performantie die uw privacy beschermt. Maximale beveiliging, meer dan ${count} server en geen beperkingen.",
+				"Zwitserse VPN met hoge performantie die uw privacy beschermt. Maximale beveiliging, meer dan ${count} servers en geen beperkingen."
+			],
+			"Include mode": [
+				"Toevoeg-modus"
+			],
+			"Learn more": [
+				"Meer informatie"
+			],
+			"Leave a rating": [
+				"Laat een review achter"
+			],
+			"Logged out": [
+				"Uitgelogd"
+			],
+			"Not now": [
+				"Niet nu"
+			],
+			"Off": [
+				"Uit"
+			],
+			"On": [
+				"Aan"
+			],
+			"Open source VPN": [
+				"Open source VPN"
+			],
+			"Open the Extensions menu": [
+				"Open het Extensie-menu"
+			],
+			"Open the Proton VPN browser extension to continue": [
+				"Open de Proton VPN-browserextensie om verder te gaan"
+			],
+			"Pin Proton VPN to your toolbar": [
+				"Proton VPN vastmaken aan uw werkbalk"
+			],
+			"Please help us spread the word with a Web Store rating.": [
+				"Help ons het woord te verspreiden met een beoordeling in de Web Store."
+			],
+			"Press <b>Next</b>, then click <b>Allow</b> on the pop-up from your browser.": [
+				"Druk <b>Volgende</b>, klik daarna op <b>Toestaan</b> in de pop-up van uw browser."
+			],
+			"Protect yourself online with Proton's free high‑speed VPN.": [
+				"Bescherm uzelf online met Proton's gratis hoge snelheid VPN"
+			],
+			"Proton Free automatically connects you to the fastest available free server from our ${freeCountriesCount} free country. This will normally be the closest server to your location.": [
+				"Proton Free verbindt u automatisch met de snelste beschikbare gratis server uit ons ${freeCountriesCount} gratis land. Meestal is dit de dichtstbijzijnde server bij uw locatie.",
+				"Proton Free verbindt u automatisch met de snelste beschikbare gratis server uit een van onze ${freeCountriesCount} gratis landen. Meestal is dit de dichtstbijzijnde server bij uw locatie."
+			],
+			"Proton VPN": [
+				"Proton VPN"
+			],
+			"Proton VPN Browser Extension": [
+				"Proton VPN Browserextensie"
+			],
+			"Recent connections": [
+				"Recente verbindingen"
+			],
+			"Remember recent connections locally and show quick links to them": [
+				"Onthoud recente lokale verbindingen en toon snelle links ernaartoe."
+			],
+			"Remember the last countries/cities/servers I connected to and show them at the\ntop of the list.": [
+				"Onthoud de laatste landen/steden/servers waarmee ik verbinding heb gemaakt en toon ze bovenaan de lijst."
+			],
+			"Retired server": [
+				"Oude server"
+			],
+			"Secure Core": [
+				"Secure Core"
+			],
+			"Selected websites": [
+				"Geselecteerde websites"
+			],
+			"Share anonymous crash reports": [
+				"Deel anonieme crashrapporten"
+			],
+			"Share anonymous usage statistics": [
+				"Anonieme gebruiksstatistieken delen"
+			],
+			"Split tunneling": [
+				"Gefilterde apps"
+			],
+			"Stops your browser from leaking your IP address to websites and apps using WebRTC. This may affect video calling or live-streaming performance on some websites.": [
+				"Het stopt uw browser uw IP-adres te lekken naar websites en apps via WebRTC. Dit kan de performantie van videobellen of livestreaming beïnvloeden op sommige websites."
+			],
+			"Telemetry": [
+				"Telemetrie"
+			],
+			"Thank you for installing Proton VPN": [
+				"Bedankt voor het installeren van Proton VPN"
+			],
+			"The split tunneling options cannot be changed on this device": [
+				"De opties voor split tunneling kunnen niet op dit apparaat worden gewijzigd"
+			],
+			"Then just click the Proton VPN icon to sign in.": [
+				"Klik daarna op het Proton VPN-icoon om in te loggen."
+			],
+			"This option cannot be changed on this device": [
+				"Deze optie kan niet worden gewijzigd op dit apparaat"
+			],
+			"Those statistics do not contain your IP address, and they cannot be used to identify you. We'll never share them with third parties": [
+				"Deze statistieken bevatten uw IP-adres niet, en kunnen niet gebruikt worden om u te identificeren. We zullen deze gegevens nooit delen met derden"
+			],
+			"To get started, you’ll need to enable VPN permissions on your browser.": [
+				"Om te starten, moet u VPN-machtigingen inschakelen in uw browser."
+			],
+			"Tor servers such as ${logical.Name} are not currently supported in the browser extension": [
+				"Tor servers zoals ${logical.Name} worden momenteel niet ondersteund in de browserextensie."
+			],
+			"Upgrade": [
+				"Upgraden"
+			],
+			"Usage data helps us overcome VPN blocks and improve app performance.": [
+				"Gebruiksgegevens helpen ons om VPN-blokkering te omzeilen en de prestaties van de app te verbeteren."
+			],
+			"User": [
+				"Gebruiker"
+			],
+			"Using Brave, DNS requests might be unprotected when \"Include mode\" is active.": [
+				"Met Brave kunnen DNS-verzoeken onbeschermd zijn wanneer \"Include mode\" actief is."
+			],
+			"VPN blocked by external software.\n\nSome tools, like anti-viruses or proxies, can interfere with Proton VPN. Disable them and retry.": [
+				"VPN geblokkeerd door externe software.\n\nSommige tools, zoals antivirusprogramma's of proxy's, kunnen interfereren met Proton VPN. Schakel deze uit en probeer het opnieuw."
+			],
+			"VPN blocked by external software: ${blockingSoftware}.\n\nSome tools, like anti-viruses or proxies, can interfere with Proton VPN. You can try disabling it to confirm.": [
+				"VPN geblokkeerd door externe software: ${blockingSoftware}\n\nSommige tools, zoals antivirusprogramma’s of proxy’s, kunnen interfereren met Proton VPN. U kunt proberen deze tijdelijk uit te schakelen om dit te bevestigen."
+			],
+			"VPN Features": [
+				"VPN-functies"
+			],
+			"We prioritize your privacy above all. We don't track your browsing and keep no logs. To authenticate your connection, your account session ID is sent to our servers, this is required for the extension to work": [
+				"Wij geven bovenal prioriteit aan uw privacy. We volgen uw surfgedrag niet en houden geen logbestanden bij. Om uw verbinding te verifiëren, wordt uw accountsessie-ID naar onze servers verzonden. Dit is nodig om de extensie te laten werken"
+			],
+			"You're signed in": [
+				"U bent ingelogd"
+			]
+		},
+		"Label": {
+			"And all its subdomains": [
+				"En al zijn subdomeinen"
+			],
+			"Auto connect": [
+				"Automatisch verbinden"
+			],
+			"Cities": [
+				"Steden"
+			],
+			"City": [
+				"Stad",
+				"Steden"
+			],
+			"Connecting": [
+				"Verbinding maken"
+			],
+			"Countries, cities, servers": [
+				"Landen, steden, servers"
+			],
+			"Country": [
+				"Land",
+				"Landen"
+			],
+			"Entry country": [
+				"Ingaand land",
+				"Ingaande landen"
+			],
+			"Exact match": [
+				"Exacte overeenkomst."
+			],
+			"Free": [
+				"Gratis"
+			],
+			"Free connections": [
+				"Gratis verbindingen"
+			],
+			"Free servers": [
+				"Free servers"
+			],
+			"Free servers (${count})": [
+				"Free servers (${count})"
+			],
+			"Internal servers (${count})": [
+				"Interne servers (${count})"
+			],
+			"Need help?": [
+				"Heeft u hulp nodig?"
+			],
+			"Notifications": [
+				"Meldingen"
+			],
+			"Offer": [
+				"Aanbieding"
+			],
+			"Other": [
+				"Overig"
+			],
+			"Plus servers (${count})": [
+				"Plus servers (${count})"
+			],
+			"Protected": [
+				"Beschermd"
+			],
+			"Server": [
+				"Server",
+				"Servers"
+			],
+			"Settings": [
+				"Instellingen"
+			],
+			"Split tunneling": [
+				"Gefilterde apps"
+			],
+			"Unprotected": [
+				"Onbeschermd"
+			],
+			"Via": [
+				"Via"
+			],
+			"Want to know more?": [
+				"Wilt u meer weten?"
+			],
+			"WebRTC leak protection": [
+				"WebRTC-lekbescherming"
+			]
+		},
+		"Menu": {
+			"Countries": [
+				"Landen"
+			],
+			"Features": [
+				"Functies"
+			],
+			"Help": [
+				"Hulp"
+			],
+			"Settings": [
+				"Instellingen"
+			]
+		},
+		"Status": {
+			"Connecting to ${serverName}": [
+				"Verbinding maken met ${serverName}"
+			],
+			"Proton VPN: ${status}": [
+				"Proton VPN: ${status}"
+			]
+		},
+		"Title": {
+			"Closest server": [
+				"Dichtstbijzijnde server"
+			],
+			"Fastest country": [
+				"Snelste land"
+			],
+			"Fastest server": [
+				"Snelste server"
+			],
+			"Features": [
+				"Functies"
+			],
+			"Proton VPN for Vivaldi": [
+				"Proton VPN voor Vivaldi"
+			],
+			"Random server": [
+				"Willekeurige server"
+			],
+			"Recents": [
+				"Laatst gebruikte"
+			],
+			"Streaming": [
+				"Streaming"
+			]
+		}
+	}
+}

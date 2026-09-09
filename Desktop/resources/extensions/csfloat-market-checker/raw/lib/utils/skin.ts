@@ -1,0 +1,251 @@
+import {rgAsset} from '../types/steam';
+import {ItemInfo} from '../bridge/handlers/fetch_inspect_info';
+import {getDopplerPhase, hasDopplerPhase} from './dopplers';
+import {html, TemplateResult} from 'lit';
+import {AcidFadeCalculator, AmberFadeCalculator, FadeCalculator} from 'csgo-fade-percentage-calculator';
+
+export function rangeFromWear(wear: number): [number, number] | null {
+    const wearRanges: [number, number][] = [
+        [0.0, 0.07],
+        [0.07, 0.15],
+        [0.15, 0.38],
+        [0.38, 0.45],
+        [0.45, 1.0],
+    ];
+
+    for (const range of wearRanges) {
+        if (wear > range[0] && wear <= range[1]) {
+            return range;
+        }
+    }
+
+    return null;
+}
+
+export function getLowestRank(info: ItemInfo): number | undefined {
+    if (!info.low_rank && !info.high_rank) {
+        // Item has no rank to return
+        return;
+    }
+
+    return (info.low_rank || 1001) < (info.high_rank || 1001) ? info.low_rank : info.high_rank;
+}
+
+export function parseRank(info: ItemInfo): {order: OrderType; rank: number} | undefined {
+    const rank = getLowestRank(info);
+    if (rank && rank <= 1000) {
+        return {
+            order: rank === info.low_rank ? OrderType.LOW_RANK : OrderType.HIGH_RANK,
+            rank,
+        };
+    }
+}
+
+export function formatFloatWithRank(info: ItemInfo, precisionDigits = 14): string {
+    let r = info.floatvalue.toFixed(precisionDigits);
+
+    const ranked = parseRank(info);
+    if (ranked) {
+        r += ` (#${ranked.rank})`;
+    }
+
+    return r;
+}
+
+export function formatSeed(info: ItemInfo): string {
+    let r = info.paintseed.toString();
+
+    if (hasDopplerPhase(info.paintindex)) {
+        r += ` (${getDopplerPhase(info.paintindex)})`;
+    }
+
+    return r;
+}
+
+enum OrderType {
+    LOW_RANK = 1,
+    HIGH_RANK = -1,
+}
+
+/**
+ * Gets formatted link for floatdb for the specified item type and order
+ * @param info item properties dict
+ * @param order 1 for low float, -1 for high float ordering
+ */
+function getFloatDbLink(info: ItemInfo, order: OrderType): string {
+    function getFloatDbCategory(item: ItemInfo): number {
+        if (item.is_stattrak) {
+            return 2;
+        } else if (item.is_souvenir) {
+            return 3;
+        } else {
+            return 1; // "Normal""
+        }
+    }
+
+    return `https://csfloat.com/db?defIndex=${info.defindex}&paintIndex=${
+        info.paintindex
+    }&order=${order}&category=${getFloatDbCategory(info)}`;
+}
+
+export function renderClickableRank(info: ItemInfo): TemplateResult<1> {
+    const parsedRank = parseRank(info);
+    if (!parsedRank) {
+        return html``;
+    }
+
+    return html` <a
+        style="color: #ebebeb; text-decoration: none; cursor: pointer;"
+        href="${getFloatDbLink(info, parsedRank.order)}"
+        target="_blank"
+    >
+        (Rank #${parsedRank.rank})
+    </a>`;
+}
+
+export function isSellableOnCSFloat(asset: rgAsset): boolean {
+    return (
+        isSkin(asset) ||
+        isCharm(asset) ||
+        isAgent(asset) ||
+        isSticker(asset) ||
+        isPatch(asset) ||
+        isCase(asset) ||
+        isMusicKit(asset) ||
+        isPin(asset)
+    );
+}
+export function isSkin(asset: rgAsset): boolean {
+    return asset.tags
+        ? asset.tags.some((a) => a.category === 'Weapon' || (a.category === 'Type' && a.internal_name === 'Type_Hands'))
+        : ['★', 'Factory New', 'Minimal Wear', 'Field-Tested', 'Well-Worn', 'Battle-Scarred'].some((keyword) =>
+              asset.market_hash_name.includes(keyword)
+          );
+}
+
+export function isCharm(asset: rgAsset): boolean {
+    return isAbstractType(asset, 'Charm', 'CSGO_Tool_Keychain');
+}
+
+export function isHighlightCharm(asset: rgAsset): boolean {
+    return isCharm(asset) && !!asset.tags && asset.tags.some((a) => a.internal_name === 'highlight');
+}
+
+export function isAgent(asset: rgAsset): boolean {
+    return isAbstractType(asset, 'Agent', 'Type_CustomPlayer');
+}
+
+export function isSticker(asset: rgAsset): boolean {
+    return isAbstractType(asset, 'Sticker', 'CSGO_Tool_Sticker');
+}
+
+export function isPatch(asset: rgAsset): boolean {
+    return isAbstractType(asset, 'Patch', 'CSGO_Type_Patch');
+}
+
+export function isCase(asset: rgAsset): boolean {
+    return isAbstractType(asset, 'Container', 'CSGO_Type_WeaponCase');
+}
+
+export function isMusicKit(asset: rgAsset): boolean {
+    return isAbstractType(asset, 'Music Kit', 'CSGO_Type_MusicKit');
+}
+
+export function isPin(asset: rgAsset): boolean {
+    return isAbstractType(asset, 'Pin', 'CSGO_Type_Collectible');
+}
+
+function isAbstractType(asset: rgAsset, type: string, internalName: string): boolean {
+    if (asset.type.endsWith(type)) {
+        return true;
+    }
+
+    if (!asset.tags) {
+        return false;
+    }
+
+    return asset.tags.some((e) => e.category === 'Type' && e.internal_name === internalName);
+}
+
+/**
+ * Checks if the item is a skins that supports bluegem data
+ * I.e. Case Hardened or Heat Treated, not gloves
+ * @param itemInfo item info
+ * @returns true if the item is a blue skin, false otherwise
+ */
+export function isBlueSkin(itemInfo: ItemInfo): boolean {
+    return (
+        itemInfo.item_name !== undefined &&
+        itemInfo.weapon_type !== undefined &&
+        ['Case Hardened', 'Heat Treated'].includes(itemInfo.item_name) &&
+        !itemInfo.weapon_type.includes('Gloves')
+    );
+}
+
+export function getFadeParams(marketHashName: string):
+    | {
+          calculator: typeof FadeCalculator | typeof AcidFadeCalculator | typeof AmberFadeCalculator;
+          weaponName: string;
+          className: string;
+      }
+    | undefined {
+    const FADE_TYPE_TO_CALCULATOR = {
+        Fade: FadeCalculator,
+        'Acid Fade': AcidFadeCalculator,
+        'Amber Fade': AmberFadeCalculator,
+    };
+
+    for (const [fadeType, calculator] of Object.entries(FADE_TYPE_TO_CALCULATOR)) {
+        for (const supportedWeapon of calculator.getSupportedWeapons()) {
+            if (marketHashName.includes(`${supportedWeapon} | ${fadeType}`)) {
+                return {
+                    calculator,
+                    weaponName: supportedWeapon.toString(),
+                    className: fadeType.replace(' ', '-').toLowerCase(),
+                };
+            }
+        }
+    }
+}
+
+export function getFadePercentage(
+    marketHashName: string,
+    itemInfo: ItemInfo
+): {percentage: number; className: string} | undefined {
+    const fadeInfo = getFadeParams(marketHashName);
+
+    if (fadeInfo !== undefined) {
+        const {calculator, weaponName, className} = fadeInfo;
+
+        return {
+            percentage: calculator.getFadePercentage(weaponName, itemInfo.paintseed).percentage,
+            className,
+        };
+    }
+}
+
+export function floor(n: number, precision?: number) {
+    const p = 10 ** (precision || 0);
+
+    return Math.floor(n * p) / p;
+}
+
+/**
+ * As part of the March 4/2026 update, skins listed on SCM get moved into the trade protected inventory context
+ * so the user can still use them in-game while listed. However, Valve introduced a bug where these skins
+ * can't be inspected in game.
+ *
+ * Detect and skip these skins to prevent overloaded errors to the user and browser request throttling.
+ */
+export function isBuggedSkin(asset: rgAsset | undefined): boolean {
+    if (!asset || !isSkin(asset)) {
+        return false;
+    }
+
+    if (asset.unowned_contextid !== '16') {
+        return false;
+    }
+
+    const fv = (asset.asset_properties || []).find((prop) => prop.propertyid === 2);
+    return !fv;
+}

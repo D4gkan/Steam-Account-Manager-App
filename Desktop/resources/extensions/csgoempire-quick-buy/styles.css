@@ -1,0 +1,74 @@
+.emp-two-click-hidden-panel {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.emp-two-click-active #item-page-buy-withdraw,
+.emp-two-click-active [data-testid="item-page-buy-withdraw"] {
+  display: none !important;
+}
+
+/* On compact layouts CSGOEmpire renders the dark backdrop as a sibling of the
+   trade component. Hiding only the component leaves that full-screen layer on
+   top of the inline buttons, so disable the mobile shell's hit area as well. */
+.emp-two-click-active .sidebar.sidebar__mobile {
+  pointer-events: none !important;
+}
+
+.emp-two-click-active .sidebar__mask,
+.emp-two-click-active .sidebar-structure__click-outside {
+  display: none !important;
+  pointer-events: none !important;
+}
+
+.emp-two-click-mount {
+  display: none;
+  min-width: 180px;
+}
+
+.emp-two-click-active .emp-two-click-mount {
+  display: block;
+}
+
+.emp-two-click-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  min-width: 180px;
+  padding: 0;
+  font: 700 14px/1 system-ui, sans-serif;
+}
+
+.emp-two-click-actions button {
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  border-radius: 5px;
+  padding: 0 12px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 rgb(0 0 0 / 28%);
+}
+
+.emp-two-click-confirm {
+  background: #f2b600;
+  color: #080808;
+}
+
+.emp-two-click-confirm:hover {
+  background: #ffc400;
+}
+
+.emp-two-click-confirm:disabled {
+  background: #8e7630;
+  color: #27231a;
+  cursor: wait;
+}
+
+.emp-two-click-cancel {
+  background: #252733;
+  color: #fff;
+}
+
+.emp-two-click-cancel:hover {
+  background: #30333f;
+}

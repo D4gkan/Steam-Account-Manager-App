@@ -1,0 +1,1 @@
+function ShowTradeOffer(a,e){var n="";e&&(n="?"+$J.param(e));"new"==a&&e.partner;window.open("https://steamcommunity.com/tradeoffer/"+a+"/"+n,"_blank").focus()}

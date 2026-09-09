@@ -1,0 +1,288 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_application_title__",
+  "short_name": "CS2 Trader",
+  "version": "3.6.1",
+  "minimum_chrome_version": "109",
+  "default_locale": "en",
+  "description": "__MSG_application_description__",
+  "homepage_url": "https://cs2trader.app/",
+  "permissions": [
+    "storage",
+    "notifications",
+    "alarms",
+    "unlimitedStorage"
+  ],
+  "optional_permissions": [
+    "tabs"
+  ],
+  "host_permissions": [
+    "*://steamcommunity.com/*",
+    "*://api.steampowered.com/*",
+    "*://api.csgotrader.app/*",
+    "*://prices.csgotrader.app/*"
+  ],
+  "optional_host_permissions": [
+    "*://csgotraders.net/*",
+    "*://discord.com/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://steamcommunity.com/*/inventory",
+        "*://steamcommunity.com/*/inventory/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/inventory.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/tradeoffer/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/tradeOffer.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/*/tradeoffers*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/tradeOffers.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/market/listings/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/marketListing.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/id/*/*",
+        "*://steamcommunity.com/id/*",
+        "*://steamcommunity.com/profiles/*/*",
+        "*://steamcommunity.com/profiles/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/profile.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/groups/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/group.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/sharedfiles/filedetails/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/sharedFile.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/chat/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/webChat.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/dev/apikey*",
+        "*://steamcommunity.com/dev/registerkey*",
+        "*://steamcommunity.com/dev/revokekey*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/apiKey.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/groups/*/discussions/*",
+        "*://steamcommunity.com/app/*/discussions/*",
+        "*://steamcommunity.com/app/*/tradingforum/*",
+        "*://steamcommunity.com/app/*/eventcomments/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/discussions.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/openid/login*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/openIDLogin.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/id/*/friends*",
+        "*://steamcommunity.com/profiles/*/friends*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/friends.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/market/",
+        "*://steamcommunity.com/market"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/market.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/market/search*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/marketSearch.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/id/*/inventoryhistory*",
+        "*://steamcommunity.com/id/*/tradehistory*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/steam/tradeHistory.bundle.js"
+      ],
+      "css": [
+        "/css/generalCSTStyle.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://csgotraders.net/mytrades*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/tradersBump.bundle.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://csgotraders.net/*"
+      ],
+      "run_at": "document_idle",
+      "js": [
+        "js/contentScripts/tradersAutoLogin.bundle.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "images/*"
+      ],
+      "matches": [
+        "*://steamcommunity.com/*"
+      ]
+    },
+    {
+      "resources": [
+        "sound/notification/*",
+        "js/injectToPage/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "action": {
+    "default_popup": "index.html?page=popup",
+    "default_icon": {
+      "16": "images/cstlogo16.png",
+      "32": "images/cstlogo32.png",
+      "48": "images/cstlogo48.png",
+      "128": "images/cstlogo128.png"
+    }
+  },
+  "icons": {
+    "16": "images/cstlogo16.png",
+    "32": "images/cstlogo32.png",
+    "48": "images/cstlogo48.png",
+    "128": "images/cstlogo128.png"
+  },
+  "background": {
+    "scripts": [
+      "js/backgroundScripts/background.bundle.js"
+    ]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{988dd4f5-e8d5-49bf-a766-ff75b0e19fe2}"
+    }
+  }
+}

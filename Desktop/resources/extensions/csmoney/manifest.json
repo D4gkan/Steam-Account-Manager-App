@@ -1,0 +1,52 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "CS.Money",
+  "description": "The power of CS.Money extension",
+  "version": "5.0.0",
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Open extension"
+  },
+  "icons": {
+    "16": "logo16x16.png",
+    "48": "logo48x48.png",
+    "128": "logo128x128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.cs.money/*",
+        "https://*.csmoney.money/*",
+        "https://*.1cs.money/*",
+        "https://*.3cs.money/*"
+      ],
+      "js": [
+        "static/js/createExtensionIdentifier.js"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "*://steamcommunity.com/",
+    "*://api.steampowered.com/",
+    "*://steamcommunity-a.akamaihd.net/",
+    "*://cs.money/",
+    "*://csmoney.money/",
+    "*://1cs.money/",
+    "*://3cs.money/"
+  ],
+  "permissions": [
+    "cookies",
+    "alarms",
+    "notifications",
+    "storage",
+    "webNavigation",
+    "tabs",
+    "declarativeNetRequest"
+  ],
+  "background": {
+    "service_worker": "static/js/serviceWorker.js",
+    "type": "module"
+  }
+}

@@ -1,0 +1,101 @@
+{
+"update_url": "https://clients2.google.com/service/update2/crx",
+
+  "manifest_version": 3,
+  "name": "Skins.com Marketplace",
+  "short_name": "Skins.com",
+  "version": "1.0.7",
+  "description": "Automated trading extension for the Skins.com marketplace",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://skins.com/*",
+        "*://*.skins.com/*"
+      ],
+      "js": [
+        "src/auth/content-script.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://steamcommunity.com/id/*/tradeoffers/*",
+        "*://*.steamcommunity.com/id/*/tradeoffers/*",
+        "*://steamcommunity.com/profiles/*/tradeoffers/*",
+        "*://*.steamcommunity.com/profiles/*/tradeoffers/*"
+      ],
+      "js": [
+        "src/steam/session-watcher.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/16.png",
+      "48": "icons/48.png"
+    }
+  },
+  "minimum_chrome_version": "109",
+  "permissions": [
+    "storage",
+    "alarms",
+    "declarativeNetRequestWithHostAccess",
+    "cookies",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://skins.com/*",
+    "*://*.skins.com/*",
+    "*://steamcommunity.com/*",
+    "*://*.steamcommunity.com/*",
+    "*://steamcommunity.com/id/*/tradeoffers/*",
+    "*://*.steamcommunity.com/id/*/tradeoffers/*",
+    "*://steamcommunity.com/profiles/*/tradeoffers/*",
+    "*://*.steamcommunity.com/profiles/*/tradeoffers/*",
+    "https://api.skins.com/*",
+    "*://ws.skins.com/*"
+  ],
+  "optional_host_permissions": [
+    "*://steampowered.com/*",
+    "*://*.steampowered.com/*",
+    "https://api.steampowered.com/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "steamcommunity_ruleset",
+        "enabled": true,
+        "path": "src/rules/steamcommunity_ruleset.json"
+      }
+    ]
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/auth/content-script.js",
+        "src/steam/tradeoffers-banner.js",
+        "chunks/*.js"
+      ],
+      "matches": [
+        "*://skins.com/*",
+        "*://*.skins.com/*",
+        "*://steamcommunity.com/*",
+        "*://*.steamcommunity.com/*"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        {
+          "header": "referer",
+          "operation": "set",
+          "value": "https://steamcommunity.com/tradeoffer/new"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "https://steamcommunity.com/tradeoffer/new/send",
+      "resourceTypes": ["xmlhttprequest"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "modifyHeaders",
+      "requestHeaders": [
+        {
+          "header": "referer",
+          "operation": "set",
+          "value": "https://steamcommunity.com/tradeoffer/1/"
+        }
+      ]
+    },
+    "condition": {
+      "urlFilter": "https://steamcommunity.com/tradeoffer/*/accept",
+      "resourceTypes": ["xmlhttprequest"]
+    }
+  }
+]

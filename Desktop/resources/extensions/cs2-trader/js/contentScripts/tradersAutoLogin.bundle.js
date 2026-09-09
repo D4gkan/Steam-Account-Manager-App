@@ -1,0 +1,2 @@
+chrome.storage.local.get("csgotradersAutoLogin",(e=>{if(e.csgotradersAutoLogin){document.referrer.includes("steamcommunity.com/openid/login")&&(window.location.href="https://csgotraders.net/mytrades");const e=document.querySelector('a[href="/auth/steam"]');null!==e&&e.click()}}));
+//# sourceMappingURL=tradersAutoLogin.bundle.js.map

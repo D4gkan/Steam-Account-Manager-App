@@ -1,0 +1,60 @@
+appId: com.steamaccountmanager.app
+productName: Steam Account Manager App
+icon: app-icon.png
+asar: true
+asarUnpack:
+  - node_modules/@img/**/*
+directories:
+  output: release
+files:
+  - dist/**/*
+  - package.json
+extraResources:
+  - from: LICENSE
+    to: LICENSE
+  - from: packaging/uninstall-data.ps1
+    to: uninstall-data.ps1
+  - from: packaging/uninstall-linux.sh
+    to: uninstall-linux.sh
+  - from: app-icon.png
+    to: app-icon.png
+  - from: resources/extensions
+    to: extensions
+  - from: companion-extension
+    to: companion-extension
+  - from: native-bridge/bin
+    to: native-bridge/bin
+  - from: THIRD-PARTY-NOTICES.md
+    to: THIRD-PARTY-NOTICES.md
+  - from: EXTENSION-PROVENANCE.json
+    to: EXTENSION-PROVENANCE.json
+  - from: resources/runtime
+    to: runtime
+    filter:
+      - chromium-*/**/*
+win:
+  target:
+    - target: nsis
+      arch: [x64]
+  signExecutable: false
+  artifactName: "${productName}-Setup-${version}.${ext}"
+nsis:
+  include: packaging/installer.nsh
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  deleteAppDataOnUninstall: false
+linux:
+  syncDesktopName: true
+  target: [AppImage, deb]
+  category: Utility
+  maintainer: Steam Account Manager App
+  executableName: steam-account-manager-app
+  desktop:
+    entry:
+      Name: Steam Account Manager App
+      Comment: Isolated local Steam account browser profiles
+deb:
+  afterRemove: .tmp/linux-after-remove.sh

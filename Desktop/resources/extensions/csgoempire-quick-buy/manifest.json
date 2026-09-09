@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "CSGOEmpire Quick Buy",
+  "version": "1.0.2",
+  "description": "Provides configurable one-click or two-click buying on CSGOEmpire.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "CSGOEmpire Quick Buy settings",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://csgoempire.com/*", "https://www.csgoempire.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

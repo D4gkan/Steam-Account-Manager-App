@@ -1,0 +1,7 @@
+{
+  "name": "com.steamaccountmanager.bridge",
+  "description": "Steam Account Manager App native messaging bridge",
+  "path": "__ABSOLUTE_PATH_TO_HOST_ENTRYPOINT__",
+  "type": "stdio",
+  "allowed_origins": ["chrome-extension://__COMPANION_EXTENSION_ID__/"]
+}

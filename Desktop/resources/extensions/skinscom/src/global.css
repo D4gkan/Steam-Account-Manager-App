@@ -1,0 +1,20 @@
+:root {
+  /* Base palette (from frontend) */
+  --color-base-0: #ffffff;
+  --color-base-200: #cfd4de;
+  --color-base-300: #6d7790;
+  --color-base-500: #232e43;
+  --color-base-600: #1e2739;
+  --color-base-700: #171d2b;
+  --color-base-800: #141925;
+  --color-base-900: #10151e;
+  --color-base-950: #0c1017;
+
+  /* Brand */
+  --color-brand-100: #4bf364;
+
+  /* Semantic */
+  --color-success: #4bf364;
+  --color-danger: #f3a7bd;
+  --color-warning: #f3c087;
+}

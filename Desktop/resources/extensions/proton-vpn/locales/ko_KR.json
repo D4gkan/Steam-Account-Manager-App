@@ -1,0 +1,561 @@
+{
+	"headers": {
+		"plural-forms": "nplurals=1; plural=0;",
+		"language": "ko_KR"
+	},
+	"contexts": {
+		"Action": {
+			"${linkDescription} (New tab)": [
+				"${linkDescription} (새 탭)"
+			],
+			"Add": [
+				"추가"
+			],
+			"Add website": [
+				"웹사이트 추가"
+			],
+			"Already have a Proton Account?": [
+				"이미 Proton 계정을 가지고 계신가요?"
+			],
+			"Cancel": [
+				"취소"
+			],
+			"Change server": [
+				"서버 변경"
+			],
+			"Configure split tunneling": [
+				"분할 터널링 구성 설정하기"
+			],
+			"Connect": [
+				"연결"
+			],
+			"Contact us": [
+				"문의"
+			],
+			"Create an account": [
+				"계정 만들기"
+			],
+			"Disable auto-connect": [
+				"자동 연결 비활성화"
+			],
+			"Disable notifications": [
+				"알림 끄기"
+			],
+			"Disable WebRTC leak protection": [
+				"WebRTC 누출 방지 비활성화"
+			],
+			"Disconnect": [
+				"연결 해제"
+			],
+			"Enable auto-connect": [
+				"자동 연결 활성화"
+			],
+			"Enable notifications": [
+				"알림 켜기"
+			],
+			"Enable WebRTC leak protection": [
+				"WebRTC 누출 방지 활성화"
+			],
+			"Log in with Proton": [
+				"Proton으로 로그인"
+			],
+			"Manage subscription": [
+				"구독 관리"
+			],
+			"New to Proton?": [
+				"Proton이 처음이신가요?"
+			],
+			"Next": [
+				"다음"
+			],
+			"Quick connect": [
+				"빠른 연결"
+			],
+			"Remove ${domain}": [
+				"${domain} 삭제"
+			],
+			"Select a city in ${exitCountryName}": [
+				"${exitCountryName} 에서 도시를 선택하세요"
+			],
+			"Select a server in ${cityName}": [
+				"${cityName} 에서 서버를 선택하세요"
+			],
+			"Select entry country with exit in ${exitCountryName}": [
+				"${exitCountryName} 에 나갈 입력 국가를 선택 하세요"
+			],
+			"Sign in": [
+				"로그인"
+			],
+			"Sign in with Vivaldi": [
+				"Vivaldi로 로그인"
+			],
+			"Sign out": [
+				"로그아웃"
+			],
+			"Subscribe to connect more devices": [
+				"더 많은 기기를 연결하려면 구독하세요"
+			],
+			"Subscribe to enable Browser Extension": [
+				"브라우저 확장을 활성화하려면 구독하세요"
+			],
+			"Switch account": [
+				"계정 전환"
+			],
+			"Update": [
+				"업데이트"
+			],
+			"Upgrade": [
+				"업그레이드"
+			],
+			"Upgrade to Proton VPN Plus": [
+				"Proton VPN Plus로 업그레이드"
+			],
+			"Visit Support Center": [
+				"지원 센터 방문"
+			]
+		},
+		"Action: City-level button": {
+			"Connect to ${cityName}": [
+				"${cityName} 에 연결"
+			]
+		},
+		"Action: Country-level button": {
+			"Connect to ${exitCountryName}": [
+				"${exitCountryName} 에 연결"
+			]
+		},
+		"Action: Server-level button": {
+			"Connect to ${serverName}": [
+				"${serverName} 에 연결"
+			]
+		},
+		"Confirm": {
+			"Logging out of the application will disconnect the active VPN connection. Do you want to continue?": [
+				"앱에서 로그아웃하면 현재 VPN 연결이 끊어집니다. 계속하시겠습니까?"
+			]
+		},
+		"Error": {
+			"${countries} country": [
+				"${countries}개 국가"
+			],
+			"${serversCount} secure server": [
+				"${serversCount}개 보안 서버"
+			],
+			"${servers}+ secure server": [
+				"${servers} 개 이상 보안 서버"
+			],
+			"Access over ${servers} in ${countries}": [
+				"${countries}에서 ${servers}에 액세스"
+			],
+			"Bypass online censorship with advanced security and privacy features": [
+				"발전된 보안과 프라이버시 기능으로 온라인 검열을 벗어나세요"
+			],
+			"Connect from your browser with ${planName}": [
+				"${planName}로 브라우저에 연결하세요."
+			],
+			"Network error.": [
+				"네트워크 오류."
+			],
+			"Network is unreachable": [
+				"네트워크에 연결할 수 없습니다"
+			],
+			"No results found": [
+				"검색 결과가 없습니다."
+			],
+			"Not able to control the browser network settings, possibly a permission is missing": [
+				"브라우저 네트워크 설정을 조절할 수 없습니다, 권한이 없을 수도 있습니다"
+			],
+			"Please check your connectivity": [
+				"인터넷 연결을 확인하세요"
+			],
+			"Please try a different keyword": [
+				"다른 키워드를 입력해주세요"
+			],
+			"Server not found": [
+				"서버를 찾을 수 없습니다"
+			],
+			"Service temporarily unavailable": [
+				"서비스를 잠시 이용할 수 없습니다"
+			],
+			"Something went wrong. If the problem persists, please try to re-install the extension": [
+				"뭔가 잘못되었습니다. 문제가 지속되면, 확장을 재설치 해보세요"
+			],
+			"Unable to find appropriate server, try to logout and login again if it persists.": [
+				"적합한 서버를 찾지 못했습니다. 문제가 계속 발생한다면 로그아웃 후 재시도해 주세요."
+			],
+			"Unable to load the list": [
+				"리스트를 불러올 수 없습니다"
+			],
+			"Unable to login": [
+				"로그인할 수 없습니다"
+			],
+			"Unable to reach the server, please try to reconnect, or to log out and log in again if the problem persists": [
+				"서버에 도달할 수 없음, 이 문제가 다시 발생한다면 재연결을 시도하거나 로그아웃 후 다시 로그인 해보세요"
+			],
+			"Unlock ${servers} in ${countries}": [
+				"${countries} 개 국가의 ${servers} 개 서버 잠금 해제"
+			],
+			"Unlock global streaming services": [
+				"전 세계의 스트리밍 서비스에 접근하세요"
+			]
+		},
+		"Info": {
+			"<div class=\"weak-text\">\n<span data-trans>About free connections</span>\n<svg width=\"15\" height=\"14\" viewBox=\"0 0 15 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path \t\t\t\t\t\t\t\t\t\tfill-rule=\"evenodd\"\nclip-rule=\"evenodd\"\nd=\"M7.5 13C10.8137 13 13.5 10.3137 13.5 7C13.5 3.68629 10.8137 1 7.5 1C4.18629 1 1.5 3.68629 1.5 7C1.5 10.3137 4.18629 13 7.5 13ZM7.5 14C11.366 14 14.5 10.866 14.5 7C14.5 3.13401 11.366 0 7.5 0C3.63401 0 0.5 3.13401 0.5 7C0.5 10.866 3.63401 14 7.5 14ZM9.24995 10C9.24995 10.3038 9.00371 10.55 8.69995 10.55H7.69995H6.69995C6.39619 10.55 6.14995 10.3038 6.14995 10C6.14995 9.69624 6.39619 9.45 6.69995 9.45H7.14995L7.14995 6.55H6.99994C6.69618 6.55 6.44994 6.30376 6.44994 6C6.44994 5.69624 6.69618 5.45 6.99994 5.45H7.69995C7.84582 5.45 7.98571 5.50795 8.08886 5.61109C8.19201 5.71424 8.24995 5.85413 8.24995 6L8.24995 9.45H8.69995C9.00371 9.45 9.24995 9.69624 9.24995 10ZM7.5 4.40002C7.8866 4.40002 8.2 4.08662 8.2 3.70002C8.2 3.31343 7.8866 3.00002 7.5 3.00002C7.1134 3.00002 6.8 3.31343 6.8 3.70002C6.8 4.08662 7.1134 4.40002 7.5 4.40002Z\"\nfill=\"#A7A4B5\" ></path>\n</svg>\n</div>": [
+				"<div class=\"weak-text\">\n<span data-trans>무료 연결 정보</span>\n<svg width=\"15\" height=\"14\" viewBox=\"0 0 15 14\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n<path \t\t\t\t\t\t\t\t\t\tfill-rule=\"evenodd\"\nclip-rule=\"evenodd\"\nd=\"M7.5 13C10.8137 13 13.5 10.3137 13.5 7C13.5 3.68629 10.8137 1 7.5 1C4.18629 1 1.5 3.68629 1.5 7C1.5 10.3137 4.18629 13 7.5 13ZM7.5 14C11.366 14 14.5 10.866 14.5 7C14.5 3.13401 11.366 0 7.5 0C3.63401 0 0.5 3.13401 0.5 7C0.5 10.866 3.63401 14 7.5 14ZM9.24995 10C9.24995 10.3038 9.00371 10.55 8.69995 10.55H7.69995H6.69995C6.39619 10.55 6.14995 10.3038 6.14995 10C6.14995 9.69624 6.39619 9.45 6.69995 9.45H7.14995L7.14995 6.55H6.99994C6.69618 6.55 6.44994 6.30376 6.44994 6C6.44994 5.69624 6.69618 5.45 6.99994 5.45H7.69995C7.84582 5.45 7.98571 5.50795 8.08886 5.61109C8.19201 5.71424 8.24995 5.85413 8.24995 6L8.24995 9.45H8.69995C9.00371 9.45 9.24995 9.69624 9.24995 10ZM7.5 4.40002C7.8866 4.40002 8.2 4.08662 8.2 3.70002C8.2 3.31343 7.8866 3.00002 7.5 3.00002C7.1134 3.00002 6.8 3.31343 6.8 3.70002C6.8 4.08662 7.1134 4.40002 7.5 4.40002Z\"\nfill=\"#A7A4B5\" ></path>\n</svg>\n</div>"
+			],
+			"A subdomain URL includes a prefix before the main domain name. For example, account.proton.me is a subdomain of proton.me.": [
+				"서브도메인 URL은 기본 도메인 이름 앞에 접두사를 포함합니다. 예를 들어, account.proton.me는 proton.me의 서브도메인입니다."
+			],
+			"About free connections": [
+				"무료 연결 정보"
+			],
+			"Access over 13,000 secure servers in over 120 countries": [
+				"120개 이상 국가에 위치한 13,000개 이상의 안전한 서버에 접근하세요."
+			],
+			"Access Proton VPN via this icon": [
+				"이 아이콘을 통해 Proton VPN에 접근"
+			],
+			"Allow VPN permissions": [
+				"VPN 권한 허용"
+			],
+			"Also add subdomains": [
+				"하위 도메인도 추가"
+			],
+			"and more": [
+				"그리고 더"
+			],
+			"Audited by independent security experts": [
+				"독립 보안 전문가에 의한 감사를 받았습니다"
+			],
+			"Auto-selected from": [
+				"다음 국가에서 자동 선택됨:"
+			],
+			"Automatically reconnect to Proton VPN when you open your browser.": [
+				"브라우저를 열 때 자동으로 Proton VPN에 재연결합니다."
+			],
+			"Back": [
+				"이전"
+			],
+			"Browse through the Support Center and find answers to frequently asked questions.": [
+				"지원 센터를 둘러보고 자주 묻는 질문에 대한 답을 찾아보세요."
+			],
+			"Bypass censorship with advanced security and privacy features": [
+				"향상된 보안과 개인정보 보호 기능으로 검열을 벗어나세요"
+			],
+			"Clear search": [
+				"검색 지우기"
+			],
+			"Close": [
+				"닫기"
+			],
+			"Connect to a Plus server in this country to start streaming.\n\nHint: Clear the cache of the streaming apps to ensure new content appears.": [
+				"스트리밍을 시작하려면 이 국가의 플러스 서버에 연결하십시오.\n\n참고: 새 콘텐츠가 나타나도록 스트리밍 앱의 캐시를 지우세요."
+			],
+			"Connected": [
+				"연결됨"
+			],
+			"Connected to ${name}": [
+				"${name} 에 연결됨"
+			],
+			"Connected to ${name} in ${city}": [
+				"${city} 의 ${name} 에 연결됨"
+			],
+			"Connecting servers such as ${logical.Name} is not currently supported in the browser extension": [
+				"${logical.Name}와 같은 서버는 브라우저 확장 프로그램에서 사용할 수 없습니다"
+			],
+			"Connecting to dedicated IPs such as ${logical.Name} is not currently supported in the browser extension": [
+				"${logical.Name}와 같은 전용 IP는 브라우저 확장 프로그램에서 사용할 수 없습니다"
+			],
+			"Connecting...": [
+				"연결 중..."
+			],
+			"Contact our Customer Support agents to help you out with Proton VPN.": [
+				"Proton VPN에 대한 도움을 받기 위해 고객 지원 담당자에게 문의하세요."
+			],
+			"Crash": [
+				"충돌"
+			],
+			"Crash reports help us fix bugs, detect firewalls, and avoid VPN blocks.": [
+				"충돌 보고서는 버그를 수정하고 방화벽을 감지하며 VPN 차단을 방지하는 데 도움이 됩니다."
+			],
+			"Decide which websites are protected by VPN.": [
+				"VPN으로 보호되는 웹 사이트를 설정하세요."
+			],
+			"Disable Secure Core": [
+				"Secure Core 비활성화"
+			],
+			"Disconnected": [
+				"연결 해제됨"
+			],
+			"Disconnected by another extension": [
+				"다른 확장 프로그램에 의해 연결이 해제되었습니다"
+			],
+			"Disconnected by another extension, it connected to ${newProxyName}": [
+				"다른 확장 프로그램에 의해 연결이 해제되었습니다. ${newProxyName}에 연결되였습니다."
+			],
+			"Disconnected, settings were overridden": [
+				"연결이 끊김, 설정이 재정의되었습니다"
+			],
+			"Disconnected, settings were overridden to ${newProxyName}": [
+				"연결이 끊겼습니다. 설정이 ${newProxyName}(으)로 재정의되었습니다."
+			],
+			"Emit system notifications on connection and disconnection events.": [
+				"연결되거나 연결이 끊겼을때 시스템 알림을 받습니다."
+			],
+			"Enable Secure Core": [
+				"Secure Core 활성화"
+			],
+			"Enjoying Proton VPN?": [
+				"Proton VPN을 잘 사용하고 계신가요?"
+			],
+			"Exclude mode": [
+				"제외 모드"
+			],
+			"Extra protection for people with advanced privacy needs": [
+				"향상된 프라이버시가 필요한 사용자를 위한 추가적인 보호를 제공합니다."
+			],
+			"Fastest free server": [
+				"가장 빠른 무료 서버"
+			],
+			"Follow these simple steps to get the best experience using Proton VPN": [
+				"최상의 Proton VPN 사용 환경을 누리려면 다음 간단한 단계를 따르세요"
+			],
+			"Free server countries (<span id=\"free-server-countries-count\">0</span>)": [
+				"무료 서버 국가 (<span id=\"free-server-countries-count\">0</span>)"
+			],
+			"Get unlimited server changes with VPN Plus": [
+				"VPN Plus로 무제한으로 서버 변경하기"
+			],
+			"Get worldwide coverage with VPN Plus": [
+				"VPN Plus로 전 세계 커버리지 확보하기"
+			],
+			"Help": [
+				"도움말"
+			],
+			"Help us fight censorship": [
+				"검열에 맞서도록 도와주세요"
+			],
+			"High performance Swiss VPN that protects your privacy. Maximum security, more than ${count} server and no restrictions.": [
+				"당신의 프라이버시를 보호하는 고성능 스위스 VPN입니다. 최대한의 보안과 ${count}개 이상의 서버를 제공하며, 제한이 없습니다."
+			],
+			"Include mode": [
+				"모드 포함"
+			],
+			"Learn more": [
+				"더 알아보기"
+			],
+			"Leave a rating": [
+				"평점 남기기"
+			],
+			"Logged out": [
+				"로그아웃됨"
+			],
+			"Not now": [
+				"다음에"
+			],
+			"Off": [
+				"끔"
+			],
+			"On": [
+				"켬"
+			],
+			"Open source VPN": [
+				"오픈 소스 VPN"
+			],
+			"Open the Extensions menu": [
+				"확장 메뉴 열기"
+			],
+			"Open the Proton VPN browser extension to continue": [
+				"계속하려면 Proton VPN 브라우저 확장을 실행하세요"
+			],
+			"Pin Proton VPN to your toolbar": [
+				"툴바에 Proton VPN 고정"
+			],
+			"Please help us spread the word with a Web Store rating.": [
+				"웹 스토어 평점을 통해 저희를 널리 알리는 데 도움을 주세요."
+			],
+			"Press <b>Next</b>, then click <b>Allow</b> on the pop-up from your browser.": [
+				"<b>다음</b>을 클릭한 다음에 브라우저 팝업에서 <b>허용</b>을 눌러주세요."
+			],
+			"Protect yourself online with Proton's free high‑speed VPN.": [
+				"Proton의 무료 고속 VPN으로 온라인상의 나 자신을 보호하세요."
+			],
+			"Proton VPN": [
+				"Proton VPN"
+			],
+			"Proton VPN Browser Extension": [
+				"Proton VPN 브라우저 확장 프로그램"
+			],
+			"Secure Core": [
+				"Secure Core"
+			],
+			"Selected websites": [
+				"선택된 웹 사이트"
+			],
+			"Share anonymous usage statistics": [
+				"익명 사용 통계 공유"
+			],
+			"Split tunneling": [
+				"분할 터널링"
+			],
+			"Stops your browser from leaking your IP address to websites and apps using WebRTC. This may affect video calling or live-streaming performance on some websites.": [
+				"브라우저가 WebRTC를 사용하여 웹사이트 및 앱에 IP 주소를 유출하는 것을 방지합니다. 이는 일부 웹사이트에서 화상 통화 또는 라이브 스트리밍 성능에 영향을 미칠 수 있습니다."
+			],
+			"Telemetry": [
+				"텔레메트리"
+			],
+			"Thank you for installing Proton VPN": [
+				"Proton VPN을 설치해 주셔서 감사합니다"
+			],
+			"Then just click the Proton VPN icon to sign in.": [
+				"다음 로그인 하기 위해 Proton VPN 아이콘을 클릭하세요."
+			],
+			"Those statistics do not contain your IP address, and they cannot be used to identify you. We'll never share them with third parties": [
+				"이러한 통계에는 IP 주소가 포함되어 있지 않으며 사용자 식별에 사용할 수 없습니다. 이 정보는 제3자에게 공유되지 않습니다."
+			],
+			"To get started, you’ll need to enable VPN permissions on your browser.": [
+				"시작하려면, 브라우저의 VPN 권한 허용이 필요합니다."
+			],
+			"Tor servers such as ${logical.Name} are not currently supported in the browser extension": [
+				"${logical.Name}와 같은 Tor 서버는 브라우저 확장 프로그램에서 사용할 수 없습니다"
+			],
+			"Upgrade": [
+				"업그레이드"
+			],
+			"Usage data helps us overcome VPN blocks and improve app performance.": [
+				"사용 데이터는 VPN 차단을 무력화하고 앱 성능을 개선하는 데 도움이 됩니다."
+			],
+			"User": [
+				"사용자"
+			],
+			"VPN blocked by external software.\n\nSome tools, like anti-viruses or proxies, can interfere with Proton VPN. Disable them and retry.": [
+				"외부 소프트웨어에 의해 VPN이 차단되었습니다.\n\n일부 백신 또는 프록시와 같은 도구는 Proton VPN에 간섭할 수 있습니다. 비활성화 후 재시도 해주세요."
+			],
+			"VPN blocked by external software: ${blockingSoftware}.\n\nSome tools, like anti-viruses or proxies, can interfere with Proton VPN. You can try disabling it to confirm.": [
+				"외부 소프트웨어 ${blockingSoftware}에 의해 VPN이 차단되었습니다."
+			],
+			"VPN Features": [
+				"VPN 기능"
+			],
+			"You're signed in": [
+				"로그인됨"
+			]
+		},
+		"Label": {
+			"And all its subdomains": [
+				"그리고 모든 서브 도메인"
+			],
+			"Auto connect": [
+				"자동 연결"
+			],
+			"Cities": [
+				"도시"
+			],
+			"City": [
+				"도시들"
+			],
+			"Connecting": [
+				"연결 중"
+			],
+			"Countries, cities, servers": [
+				"국가, 도시, 서버"
+			],
+			"Country": [
+				"국가"
+			],
+			"Entry country": [
+				"입구 국가"
+			],
+			"Exact match": [
+				"정확히 일치"
+			],
+			"Free": [
+				"무료"
+			],
+			"Free connections": [
+				"무료 연결"
+			],
+			"Free servers": [
+				"무료 서버"
+			],
+			"Free servers (${count})": [
+				"무료 서버 (${count})"
+			],
+			"Internal servers (${count})": [
+				"국제 서버 (${count})"
+			],
+			"Need help?": [
+				"도움이 필요한가요?"
+			],
+			"Notifications": [
+				"알림"
+			],
+			"Offer": [
+				"제안"
+			],
+			"Other": [
+				"기타"
+			],
+			"Plus servers (${count})": [
+				"Plus 서버 (${count})"
+			],
+			"Protected": [
+				"보호됨"
+			],
+			"Server": [
+				"서버"
+			],
+			"Settings": [
+				"설정"
+			],
+			"Split tunneling": [
+				"분할 터널링"
+			],
+			"Unprotected": [
+				"보호되지 않음"
+			],
+			"Via": [
+				"을(를) 통해"
+			],
+			"Want to know more?": [
+				"더 자세히 알아보고 싶으시다면?"
+			],
+			"WebRTC leak protection": [
+				"WebRTC 누출 방지"
+			]
+		},
+		"Menu": {
+			"Countries": [
+				"국가"
+			],
+			"Features": [
+				"특징"
+			],
+			"Help": [
+				"도움말"
+			],
+			"Settings": [
+				"설정"
+			]
+		},
+		"Status": {
+			"Connecting to ${serverName}": [
+				"${serverName} 에 연결 중"
+			],
+			"Proton VPN: ${status}": [
+				"Proton VPN: ${status}"
+			]
+		},
+		"Title": {
+			"Features": [
+				"기능"
+			],
+			"Proton VPN for Vivaldi": [
+				"Vivaldi용 Proton VPN"
+			],
+			"Streaming": [
+				"스트리밍"
+			]
+		}
+	}
+}

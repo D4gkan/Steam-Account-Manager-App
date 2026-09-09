@@ -1,0 +1,134 @@
+body {
+    width: 30rem;
+    background-color: #1f2029;
+    text-align: center;
+
+    color: #dcdcdc;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.link {
+    color: #9293a6;
+    font-weight: bold;
+    font-size: 0.9rem;
+
+    transition: color 0.3s ease;
+}
+
+a.link:hover {
+    color: #dcdcdc;
+}
+
+#header {
+    margin-top: 2rem;
+    color: white;
+    font-size: 1.4rem;
+}
+
+#header img {
+    width: 34px;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+.row {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.mb-1 {
+    margin-bottom: 0.5rem;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.column {
+    float: left;
+    width: 50%;
+    text-align: center;
+    position: relative;
+}
+
+.column.full {
+    width: 100%;
+}
+
+.status-badge {
+    font-size: 1rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.status-badge.success {
+    background-color: rgba(1, 191, 77, 0.15);
+    color: rgb(1, 191, 77);
+}
+
+.status-badge.error {
+    background-color: rgba(255, 92, 92, 0.15);
+    color: rgb(255, 92, 92);
+}
+
+.status-badge.warning {
+    background-color: rgba(233, 177, 14, 0.15);
+    color: rgb(233, 177, 14);
+}
+
+.tree-box {
+    border-color: #535769;
+    border-style: solid;
+    height: 2rem;
+    width: 50%;
+}
+
+.tree-box.partner {
+    border-width: 0 0 0.3rem 0.3rem;
+    margin: 0 0 0 auto;
+}
+
+.tree-box.steam {
+    border-width: 0 0.3rem 0.3rem 0;
+}
+
+.tree-branch {
+    border-color: #535769;
+    border-style: solid;
+}
+
+.tree-branch.vertical {
+    height: 2rem;
+    width: 0;
+    margin: 0 auto;
+
+    border-width: 0 0.3rem 0 0;
+}
+
+#partner-site-template {
+    display: none;
+}
+
+#partner-sites .partner-site:not(:first-child) {
+    border-top: 1px solid #535769;
+}
+
+#no-partner-sites {
+    margin: 3rem;
+    text-align: center;
+    font-weight: 100;
+}

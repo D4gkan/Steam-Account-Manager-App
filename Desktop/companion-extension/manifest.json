@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Steam Account Manager App -- Companion",
+  "version": "0.1.0",
+  "description": "First-party bridge extension: tab enumeration/ordering and Steam own-account identity detection for the Steam Account Manager App desktop dashboard. Not distributed on the Chrome Web Store; loaded unpacked per-profile alongside the required trading extensions.",
+  "minimum_chrome_version": "116",
+  "permissions": [
+    "tabs",
+    "nativeMessaging",
+    "storage",
+    "alarms",
+    "management"
+  ],
+  "host_permissions": [
+    "https://steamcommunity.com/*",
+    "https://store.steampowered.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://steamcommunity.com/*",
+        "https://store.steampowered.com/*"
+      ],
+      "js": [
+        "identity-content-script.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

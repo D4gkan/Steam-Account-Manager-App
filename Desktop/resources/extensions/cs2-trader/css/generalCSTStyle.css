@@ -1,0 +1,861 @@
+:root {
+    --steam-nametag-red: #bd4847;
+    --steam-ingame-green: #90ba3c;
+    --steam-online-blue: #57cbde;
+    --steam-offline-gray: #898989;
+    --steam-stattrak-orange: rgb(207, 106, 50);
+    --steam-note-blue: rgb(153, 204, 255);
+    --steam-knife-purple: rgb(134, 80, 172);
+    --steam-souvenir-yellow: rgb(255, 215, 0);
+    --steam-sale-golden: #e4ca63;
+    --steam-old-font: Arial, Helvetica, Verdana, sans-serif;
+}
+
+div.item_actions {
+    margin-top: 10px;
+}
+
+#inventory_function_bar {
+    margin: 0 15px 2px 15px;
+}
+
+#functionBarActions {
+    font-size: 1.2rem;
+}
+
+.functionBarRow {
+    height: 30px;
+}
+
+#inventoryTotal {
+    float: right;
+}
+
+#offer_function_bar {
+    margin-top: -18px;
+    margin-bottom: 2px;
+}
+
+#sortingMenu {
+    float: right;
+}
+
+.keyNumberInput {
+    width: 50px;
+}
+
+#functionBarGenerateMenu {
+    height: auto;
+}
+
+#generate_delimiter {
+    width: 15px;
+}
+
+#generate_options {
+    margin-top: 5px;
+}
+
+#generate_button {
+    margin-left: 15px;
+    text-decoration: underline;
+    font-size: 1rem;
+}
+
+#sellButton, #stopSale {
+    font-size: 1rem;
+    font-weight: bold;
+    float: right;
+    margin-right: 20px;
+}
+
+#multiSellLink {
+    float: right;
+    margin-right: 15px;
+    margin-top: 2px;
+}
+
+#retryStartingAt {
+    font-weight: bold;
+    float: right;
+    margin-right: 10px;
+}
+
+#startOnLoad {
+    float: right;
+    margin-right: 10px;
+}
+
+/*bootstrap progress bar*/
+progress {
+    vertical-align: baseline;
+}
+
+@-webkit-keyframes progress-bar-stripes {
+    from {
+        background-position: 1rem 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+@keyframes progress-bar-stripes {
+    from {
+        background-position: 1rem 0;
+    }
+    to {
+        background-position: 0 0;
+    }
+}
+
+.table {
+    display:table;
+}
+
+.header {
+    display:table-header-group;
+    font-weight:bold;
+}
+
+.row {
+    display:table-row;
+}
+
+.row:nth-child(even) {
+    background-color: #171a21;
+}
+
+.rowGroup {
+    display:table-row-group;
+}
+
+.cell {
+    display:table-cell;
+}
+
+#offerSummary {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#summary {
+    margin-top: 10px;
+}
+
+.sideSummary {
+    width: 49%;
+    display: inline-block;
+    background-color: #292929;
+    padding: 10px 0 10px 0;
+    vertical-align:top;
+}
+
+.summaryList {
+    text-align: left;
+    list-style-type:none;
+}
+
+.summaryTotal {
+    border-top: 1px solid;
+    padding-top: 1px;
+}
+
+.discussionAutoBump {
+    padding-top: 15px;
+    text-align: right;
+    font-size: 0.95rem;
+}
+
+.historyExportTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.friendRequestFrom {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.profitOrLoss {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    font-size: 1rem;
+}
+
+.loss {
+    color: red;
+}
+
+.cheapest, .highest, .profit {
+    color: var(--steam-ingame-green);
+}
+
+.not_cheapest, .not_highest {
+    color: var(--steam-nametag-red);
+}
+
+.ordersTotal {
+    margin: -15px 0 15px;
+}
+
+.golden {
+    color: var(--steam-sale-golden) !important;
+}
+
+.purchase {
+    background-color: rgba(0,255,0 ,0.3) !important;
+}
+
+.sale {
+    background-color: rgba(255,0,0 ,0.3) !important;
+}
+
+.realMoneySites {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+}
+
+.realMoneySite {
+    text-align: center;
+    margin: 0 20px 0 20px;
+}
+
+.realMoneySiteLink {
+    font-size: 1.1rem;
+    color: white;
+    text-decoration: none
+}
+
+.realMoneyMarketTitle {
+    font-size: 1.25em;
+    color: #cde46f;
+}
+
+.apiKeyAdded {
+    color:green;
+    margin-top: 10px;
+}
+
+.apiKeyMessage {
+    padding: 0 60px 30px 60px;
+}
+
+.trade_offers_module {
+    padding-top: 24px;
+    padding-left: 48px;
+}
+
+.hidden-copy-textarea {
+    position: absolute;
+    left: -9999px
+}
+
+.offer_action {
+    margin-right: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* the hidden class name is overwritten on some pages */
+.doHide {
+    display: none;
+}
+
+.progress {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 0.5rem;
+    overflow: hidden;
+    font-size: 0.75rem;
+    /*background-color: #e9ecef;*/
+    border-radius: 0.25rem;
+    margin: 0;
+}
+
+.progress-bar {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    background-color: #007bff;
+    transition: width 0.6s ease;
+    margin: 0;
+}
+
+.tradability {
+    text-align: center;
+    margin: 0.5rem;
+    font-size: 1rem;
+}
+
+.tradable {
+    color: var(--steam-ingame-green);
+}
+
+.not_tradable {
+    color: var(--steam-nametag-red);
+}
+
+.countdown {
+    text-align: center;
+    color: var(--steam-nametag-red);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+.perItemDate {
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    font-size: 0.8rem;
+}
+
+.dopplerPhase, .fadePercentageIndicator {
+    color: white;
+    position: absolute;
+    left: 42%;
+    top: 2px;
+    font-size: 0.8rem;
+    font-family: var(--steam-old-font);
+}
+
+.dopplerPhaseMarket {
+    color: white;
+    position: absolute;
+    left:40%;
+    top: 10%;
+}
+
+.floatBar {
+    position: relative;
+    top: -60px;
+}
+
+.floatBarMarket {
+    width: 480px;
+}
+
+.floatBarFN {
+    width: 7%;
+    background-color: var(--steam-online-blue);
+}
+
+.floatBarMW {
+    width: 8%;
+    background-color: var(--steam-ingame-green);
+}
+
+.floatBarFT {
+    width: 23%;
+    background-color: var(--steam-souvenir-yellow);
+}
+
+.floatBarWW {
+    width: 7%;
+    background-color: var(--steam-stattrak-orange);
+}
+
+.floatBarBS {
+    width: 55%;
+    background-color: var(--steam-nametag-red);
+}
+
+.floatPointer {
+    height: 15px;
+    width: 15px;
+    margin: 0;
+}
+
+.floatToolTip {
+    position: relative;
+    top: 7px;
+    left: -2%;
+    color: white;
+    width: 100px;
+}
+
+.floatTechnical {
+    margin-top: 0.5rem;
+}
+
+.showTechnical {
+    font-size: 0.5rem;
+    text-align: center;
+}
+
+.floatIndicator {
+    color: #b3cae8;
+    font-size: 0.6rem;
+    position: absolute;
+    bottom: 17px;
+    margin-bottom: 0;
+    margin-left: 2px;
+    font-family: var(--steam-old-font);
+}
+
+.paintSeedIndicator {
+    color: white;
+    position: absolute;
+    bottom: 30px;
+    right: 2px;
+    font-size: 0.7rem;
+    font-family: var(--steam-old-font);
+}
+
+.floatRankIndicator {
+    color: white;
+    position: absolute;
+    top: 38px;
+    right: 2px;
+    font-size: 0.7rem;
+    font-family: var(--steam-old-font);
+}
+
+.marketFloatOnly {
+    position: relative;
+    left: -65px;
+    top: 51px;
+    color: white;
+}
+
+.note {
+    color: var(--steam-note-blue);
+    margin-bottom: 1rem;
+}
+
+.gemIcon {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.marketActionQuickSell {
+    margin-left: 1px;
+}
+
+.marketActionInstantSell {
+    margin-left: 5px;
+}
+
+.listingError {
+    color: red;
+    margin: 0 0 10px 10px;
+}
+
+.marketListingBuyOrderError {
+    color: red;
+    width: 900px;
+    white-space: pre-wrap; /* not sure what this is but it works to not let the text overflow */
+}
+
+.exteriorSTInfo, .commodityDuplicateInfo {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    font-size: 0.8rem;
+    font-family: var(--steam-old-font);
+}
+
+.priceIndicator {
+    color: white;
+    position: absolute;
+    bottom: 2px;
+    left: 2px;
+    font-size: 0.8rem;
+    font-family: var(--steam-old-font);
+}
+
+.realTimePriceIndicator {
+    position: absolute;
+    bottom: 17px;
+    right: 2px;
+    font-size: 0.7rem;
+    color: #f9f96d;
+    font-family: var(--steam-old-font);
+}
+
+.realTimePriceTradeTotal {
+    float: right;
+    color: #f9f96d;
+}
+
+.offerRealTimeTotal {
+    position: absolute;
+    right: 0;
+    color: #f9f96d;
+}
+
+.tradeHistoryRibbon {
+  margin-left: 50px;
+}
+
+.exteriorIndicator, .commodityDuplicateIndicator {
+    color: var(--steam-note-blue);
+    font-family: var(--steam-old-font);
+}
+
+.otherExteriors {
+    color: var(--steam-note-blue);
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--steam-old-font);
+}
+
+.inOtherOffer {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 15px !important;
+    height: 15px;
+    filter: invert(97%) sepia(91%) saturate(7144%) hue-rotate(184deg) brightness(123%) contrast(96%);
+}
+
+.customStickers {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.stickerSlot {
+    display: inline;
+    margin-right: -10px;
+    margin-left: -5px;
+}
+
+.stickerIcon {
+    width: 64px;
+    height: 48px;
+}
+
+.stickerIcon:hover {
+    transform: scale(1.5);
+}
+
+.stickerHolderMarket {
+    text-align: center;
+}
+
+.stattrakOrange {
+    color: var(--steam-stattrak-orange) !important;
+}
+
+.souvenirYellow {
+    color: var(--steam-souvenir-yellow) !important;
+}
+
+.activeInfo {
+    border-color: white !important;
+}
+
+.cstSelected {
+    border: 1px dashed white !important;
+}
+
+.inventoryFunctionBarIcon {
+    width: 20px;
+    height: 20px;
+}
+
+#listingTable {
+    border-bottom: solid;
+    border-width: 1px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+#extensionUpdatedRibbon {
+    background-color: #171a21;
+    color: lightgray;
+    padding: 5px;
+    text-align: center;
+}
+
+#closeUpdatedRibbon {
+    color: orangered;
+    margin-left: 20px;
+}
+
+#messagePresetSelect {
+    margin-bottom: 10px;
+}
+
+.friendInvitesBanner {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.upperModule {
+    margin-bottom: -65px;
+}
+
+.nametag {
+    color: var(--steam-nametag-red);
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10px;
+    right: 80px;
+}
+
+.duplicate {
+    color: yellow;
+    position: absolute;
+    left: 280px;
+    top: 140px;
+    font-size: 2.5em;
+    font-weight: bold;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+
+.copyButtons {
+    color: white;
+    position: absolute;
+    left: 25px;
+    top: 80px;
+    font-weight: bold;
+}
+
+.patternInfo {
+    position: relative;
+    left: 65px;
+    bottom: 70px;
+    font-size: 1.5em;
+    color: white;
+}
+
+.contrastingBackground {
+    background-color: black;
+    padding: 1px;
+    border-radius: 4px;
+}
+
+.fadeGradient {
+    background: linear-gradient(to right, #ffc94b 0%, #ca6390 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.marbleFadeGradient {
+    background: linear-gradient(to right, #ff0000 0%, #0000ff 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.caseHardenedGradient {
+    background: linear-gradient(to right, #ffc94b 0%, #68568d 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stickerPrice {
+    position: absolute;
+    right: 2px;
+    top: 15px;
+    font-size: 0.6rem;
+    color: white;
+    font-family: var(--steam-old-font);
+}
+
+.stickersTotal {
+    color: white;
+    text-align: center;
+}
+
+.market_sorting {
+    margin-top: 5px;
+}
+
+.charmPatternMarket {
+    color: white;
+    margin-top: 4px;
+}
+
+.originalPrice {
+    font-size: 0.7rem;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}
+
+.sold {
+    opacity: 30%;
+}
+
+.whiteBackground {
+    background-color: white;
+}
+
+.offerHistory {
+    color: lightgray
+}
+
+.userPriceInput {
+    width: 50px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.messagePreset {
+    color: #aaa;
+    background-color: #1b1c20;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 0 solid transparent;
+    box-shadow: inset 0 0 4px #000;
+}
+
+/**
+ * Tooltip Styles
+ */
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+    position: relative;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+/* When hovering, ensure this element and its tooltip are on top */
+[data-tooltip]:hover {
+    z-index: 9998;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 160px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: #fff;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    z-index: 9999;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+    z-index: 9999;
+}
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    visibility: visible;
+    opacity: 1;
+    z-index: 9999;
+}
+
+
+/*Market tooltip - the simple data-tooltip seems to collide with something with the name*/
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip-market] {
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip-market]:before,
+[data-tooltip-market]:after {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip-market]:before {
+    position: absolute;
+    bottom: 350%;
+    left: 50%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: #fff;
+    content: attr(data-tooltip-market);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip-market]:after {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip-market]:hover:before,
+[data-tooltip-market]:hover:after {
+    visibility: visible;
+    opacity: 1;
+}

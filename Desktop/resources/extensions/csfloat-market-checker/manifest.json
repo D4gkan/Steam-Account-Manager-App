@@ -1,0 +1,134 @@
+{
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "manifest_version": 3,
+  "name": "CSFloat Market Checker",
+  "short_name": "CSFloat",
+  "version": "5.17.0",
+  "description": "Shows the float value, paint seed, and more of Counter-Strike (CS:GO & CS2) items on the Steam Market or Inventories",
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.steamcommunity.com/market/listings/730/*"
+      ],
+      "js": [
+        "src/lib/page_scripts/market_listing.js"
+      ],
+      "css": [
+        "src/global.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.steamcommunity.com/id/*/tradehistory*",
+        "*://*.steamcommunity.com/profiles/*/tradehistory*"
+      ],
+      "js": [
+        "src/lib/page_scripts/trade_history.js"
+      ],
+      "css": [
+        "src/global.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.steamcommunity.com/id/*/inventory*",
+        "*://*.steamcommunity.com/profiles/*/inventory*"
+      ],
+      "js": [
+        "src/lib/page_scripts/inventory.js"
+      ],
+      "css": [
+        "src/global.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.steamcommunity.com/tradeoffer/*"
+      ],
+      "js": [
+        "src/lib/page_scripts/trade_offer.js"
+      ],
+      "css": [
+        "src/global.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.steamcommunity.com/*/tradeoffers/*"
+      ],
+      "js": [
+        "src/lib/page_scripts/trade_offers.js"
+      ],
+      "css": [
+        "src/global.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.steamcommunity.com/id/*",
+        "*://*.steamcommunity.com/profiles/*"
+      ],
+      "js": [
+        "src/lib/page_scripts/profile.js"
+      ],
+      "css": [
+        "src/global.css"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "minimum_chrome_version": "109",
+  "permissions": [
+    "storage",
+    "scripting",
+    "alarms",
+    "declarativeNetRequestWithHostAccess",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "*://*.steamcommunity.com/market/listings/730/*",
+    "*://*.steamcommunity.com/id/*/inventory*",
+    "*://*.steamcommunity.com/id/*/tradehistory*",
+    "*://*.steamcommunity.com/profiles/*/inventory*"
+  ],
+  "optional_host_permissions": [
+    "*://*.steampowered.com/*"
+  ],
+  "externally_connectable": {
+    "matches": [
+      "*://*.steamcommunity.com/*",
+      "*://*.csfloat.com/*"
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/version.txt"
+      ],
+      "matches": [
+        "https://csfloat.com/*"
+      ]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "steamcommunity_ruleset",
+        "enabled": true,
+        "path": "src/steamcommunity_ruleset.json"
+      }
+    ]
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmf6qYyrFypvvB0klM/hHhIdGO0bAnUT6ZK4fLqGl8/l5OWze2leeQkC/Nf0HOTQ50d2sdgXFuQDfHsMF+HQ5pUVIUT/25MzEXZWGwqi+JAxEX9Q/yGFFN53nI4m7mGNzCQ0TDUS3IrJsFfQBMEdv/fAwnhEitF/Ko9qn8/KYDzZqIjujwXKKeqlx+UXIvkgblI44RT9evwiqp+/WjZZ/YQzLa9tFhdz0Ct3Qvhn/03YrLAXa+yxXKpLAjQJ9DpYJoa++bJwluffinxKQUX0tm5dzFRSRKFCG92hKHnQHcQFUnBlDKF4LS0KQhgelyiTxN4GmKX7I1xQS/B1TByLL2wIDAQAB"
+}

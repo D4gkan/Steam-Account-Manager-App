@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Quick Buy settings</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Quick Buy</h1>
+      <p class="intro">Choose how many clicks are required to complete a purchase.</p>
+
+      <label class="option">
+        <input type="radio" name="buyMode" value="two" checked />
+        <span><strong>Two-click</strong><small>Buy, then Confirm or Cancel</small></span>
+      </label>
+
+      <label class="option danger-option">
+        <input type="radio" name="buyMode" value="one" />
+        <span><strong>One-click</strong><small>Buying starts immediately when Buy is clicked</small></span>
+      </label>
+
+      <label class="option">
+        <input type="radio" name="buyMode" value="off" />
+        <span><strong>Disabled</strong><small>Use CSGOEmpire's normal buying interface</small></span>
+      </label>
+
+      <p id="warning" class="warning" hidden>
+        Warning: one-click mode completes purchases without a final confirmation.
+      </p>
+
+      <label class="option compact-option">
+        <input id="closeResponsiveSidebar" type="checkbox" />
+        <span>
+          <strong>Close responsive sidebar</strong>
+          <small>Close the trade panel after a completed purchase</small>
+        </span>
+      </label>
+      <p id="status" class="status">Two-click mode is active.</p>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

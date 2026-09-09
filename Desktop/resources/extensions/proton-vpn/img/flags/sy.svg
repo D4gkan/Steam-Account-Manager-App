@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 682.67 512" id="flag-icon-css-sy">
+  <defs>
+    <clipPath id="a">
+      <path fill-opacity=".67" d="M0 0h682.67v512H0z"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#a)">
+    <!-- Green stripe -->
+    <path fill="#496E2D" d="M0 0h682.67v170.67H0z"/>
+    <!-- White stripe -->
+    <path fill="#FFFFFF" d="M0 170.67h682.67v170.67H0z"/>
+    <!-- Black stripe -->
+    <path fill="#000000" d="M0 341.33h682.67v170.67H0z"/>
+    <!-- First red star -->
+    <path fill="#D80027" d="M170.67 213.33L187.33 256h42.67l-34.67 25.33 13.33 42.67-34.67-25.33-34.67 25.33 13.33-42.67-34.67-25.33h42.67z"/>
+    <!-- Second red star -->
+    <path fill="#D80027" d="M341.33 213.33L358 256h42.67l-34.67 25.33 13.33 42.67-34.67-25.33-34.67 25.33 13.33-42.67-34.67-25.33h42.67z"/>
+    <!-- Third red star -->
+    <path fill="#D80027" d="M512 213.33L528.67 256h42.67l-34.67 25.33 13.33 42.67-34.67-25.33-34.67 25.33 13.33-42.67-34.67-25.33h42.67z"/>
+  </g>
+</svg>

@@ -1,0 +1,227 @@
+import {SlimTrade} from '../types/float_market';
+import {TradeHistoryStatus, TradeHistoryType} from '../bridge/handlers/trade_history_status';
+import {AppId, TradeOfferState, TradeStatus} from '../types/steam_constants';
+import {MAX_TRADE_HISTORY_FETCH} from './constants';
+import {clearAccessTokenFromStorage, getAccessToken} from './access_token';
+
+export async function pingTradeHistory(
+    pendingTrades: SlimTrade[],
+    steamID?: string | null
+): Promise<TradeHistoryStatus[]> {
+    const {history, type} = await getTradeHistory();
+
+    // premature optimization in case it's 100 trades
+    const assetsToFind = pendingTrades.reduce(
+        (acc, e) => {
+            acc[e.contract.item.asset_id] = e;
+            return acc;
+        },
+        {} as {[key: string]: SlimTrade}
+    );
+
+    // We only want to send history that is relevant to verifying trades on CSFloat
+    const historyForCSFloat = history.filter((e) => {
+        const received_ids = e.received_assets.map((e) => e.asset_id);
+        const given_ids = e.given_assets.map((e) => e.asset_id);
+
+        const foundSlimTrades = [...received_ids, ...given_ids].map((e) => assetsToFind[e]).filter((e) => !!e);
+        if (!foundSlimTrades || foundSlimTrades.length === 0) {
+            return false;
+        }
+
+        // Have we already reported this status as a seller? If so, we can skip doing it again
+        if (
+            foundSlimTrades.every((t) => t.steam_offer?.state === TradeOfferState.Accepted && t.seller_id === steamID)
+        ) {
+            return false;
+        }
+
+        return true;
+    });
+
+    if (historyForCSFloat.length === 0) {
+        return history;
+    }
+
+    await TradeHistoryStatus.handleRequest({history: historyForCSFloat, type}, {});
+
+    return history;
+}
+
+async function getTradeHistory(): Promise<{history: TradeHistoryStatus[]; type: TradeHistoryType}> {
+    try {
+        const history = await getTradeHistoryFromAPI(MAX_TRADE_HISTORY_FETCH);
+        if (history.length > 0) {
+            // Hedge in case this endpoint gets killed, only return if there are results, fallback to HTML parser
+            return {history, type: TradeHistoryType.API};
+        } else {
+            throw new Error('failed to get trade history');
+        }
+    } catch (e) {
+        await clearAccessTokenFromStorage();
+        // Fallback to HTML parsing
+        const history = await getTradeHistoryFromHTML();
+        return {history, type: TradeHistoryType.HTML};
+    }
+}
+
+interface HistoryAsset {
+    assetid: string;
+    appid: AppId;
+    new_assetid: string;
+}
+
+interface TradeHistoryAPIResponse {
+    response: {
+        trades: {
+            tradeid: string;
+            steamid_other: string;
+            status: number;
+            assets_given?: HistoryAsset[];
+            assets_received?: HistoryAsset[];
+            time_init: number;
+            time_escrow_end?: string;
+            time_settlement?: number;
+            rollback_trade?: string;
+        }[];
+    };
+}
+
+export async function getTradeHistoryFromAPI(
+    maxTrades: number,
+    opts?: {
+        startAfterTime?: number;
+        startAfterTradeID?: string;
+        navigatingBack?: boolean;
+        getDescriptions?: boolean;
+        includeFailed?: boolean;
+        includeTotal?: boolean;
+        language?: string;
+    }
+): Promise<TradeHistoryStatus[]> {
+    const access = await getAccessToken();
+
+    let url = `https://api.steampowered.com/IEconService/GetTradeHistory/v1/?access_token=${access.token}&max_trades=${maxTrades}`;
+
+    if (opts?.startAfterTime) {
+        url += `&start_after_time=${opts.startAfterTime}`;
+    }
+
+    if (opts?.startAfterTradeID) {
+        url += `&start_after_tradeid=${opts.startAfterTradeID}`;
+    }
+
+    if (opts?.navigatingBack !== undefined) {
+        url += `&navigating_back=${opts.navigatingBack}`;
+    }
+
+    if (opts?.getDescriptions !== undefined) {
+        url += `&get_descriptions=${opts.getDescriptions}`;
+    }
+
+    if (opts?.includeFailed !== undefined) {
+        url += `&include_failed=${opts.includeFailed}`;
+    }
+
+    if (opts?.includeTotal !== undefined) {
+        url += `&include_total=${opts.includeTotal}`;
+    }
+
+    if (opts?.language) {
+        url += `&language=${opts.language}`;
+    }
+
+    // This only works if they have granted permission for https://api.steampowered.com
+    const resp = await fetch(url, {
+        credentials: 'include',
+    });
+
+    if (resp.status !== 200) {
+        throw new Error('invalid status');
+    }
+
+    const data = (await resp.json()) as TradeHistoryAPIResponse;
+    return (data.response?.trades || [])
+        .filter(
+            (e) =>
+                e.status === TradeStatus.Committed ||
+                e.status === TradeStatus.Complete ||
+                e.status === TradeStatus.TradeProtectionRollback
+        ) // Only report exchanged/completed trades or trade-protection rollbacks
+        .filter((e) => !e.time_escrow_end || new Date(parseInt(e.time_escrow_end) * 1000).getTime() < Date.now())
+        .map((e) => {
+            return {
+                other_party_url: `https://steamcommunity.com/profiles/${e.steamid_other}`,
+                other_party_id: e.steamid_other,
+                received_assets: (e.assets_received || [])
+                    .filter((e) => e.appid === AppId.CSGO)
+                    .map((e) => {
+                        return {asset_id: e.assetid, new_asset_id: e.new_assetid};
+                    }),
+                given_assets: (e.assets_given || [])
+                    .filter((e) => e.appid === AppId.CSGO)
+                    .map((e) => {
+                        return {asset_id: e.assetid, new_asset_id: e.new_assetid};
+                    }),
+                trade_id: e.tradeid,
+                time_settlement: e.time_settlement,
+                time_init: e.time_init,
+                status: e.status,
+                rollback_trade: e.rollback_trade,
+            } as TradeHistoryStatus;
+        })
+        .filter((e) => {
+            // Remove non-CS related assets
+            return e.received_assets.length > 0 || e.given_assets.length > 0;
+        });
+}
+
+async function getTradeHistoryFromHTML(): Promise<TradeHistoryStatus[]> {
+    const resp = await fetch(`https://steamcommunity.com/id/me/tradehistory`, {
+        credentials: 'include',
+        // Expect redirect since we're using `me` above
+        redirect: 'follow',
+    });
+
+    const body = await resp.text();
+
+    if (body.includes('too many requests')) {
+        throw 'Too many requests';
+    }
+
+    return parseTradeHistoryHTML(body);
+}
+
+function parseTradeHistoryHTML(body: string): TradeHistoryStatus[] {
+    const links = body.matchAll(
+        /<div class="tradehistory_event_description">.+?<a href="https:\/\/steamcommunity\.com\/(.+?)">/gms
+    );
+    const statuses = [...links].map((e) => {
+        return {
+            other_party_url: `https://steamcommunity.com/${e[1]}`,
+            other_party_id: '',
+            received_assets: [],
+            given_assets: [],
+            trade_id: '',
+            time_settlement: 0,
+            time_init: 0,
+            status: 0,
+            rollback_trade: '',
+        } as TradeHistoryStatus;
+    });
+
+    const matches = body.matchAll(
+        /HistoryPageCreateItemHover\( 'trade(\d+)_(received|given)item\d+', 730, '2', '(\d+)', '1' \);/g
+    );
+    for (const match of matches) {
+        const [text, index, type, assetId] = match;
+        const tradeIndex = parseInt(index);
+        if (type === 'received') {
+            statuses[tradeIndex].received_assets.push({asset_id: assetId});
+        } else if (type === 'given') {
+            statuses[tradeIndex].given_assets.push({asset_id: assetId});
+        }
+    }
+
+    return statuses;
+}

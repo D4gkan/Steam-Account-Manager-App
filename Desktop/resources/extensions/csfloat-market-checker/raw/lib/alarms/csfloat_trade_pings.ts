@@ -1,0 +1,123 @@
+import {SlimTrade} from '../types/float_market';
+import {pingTradeHistory} from './trade_history';
+import {cancelUnconfirmedTradeOffers, pingCancelTrades, pingSentTradeOffers} from './trade_offer';
+import {HasPermissions} from '../bridge/handlers/has_permissions';
+import {PingExtensionStatus} from '../bridge/handlers/ping_extension_status';
+import {AccessToken, getAccessToken} from './access_token';
+import {gStore} from '../storage/store';
+import {StorageKey} from '../storage/keys';
+import {reportBlockedBuyers} from './blocked_users';
+import {TradeHistoryStatus} from '../bridge/handlers/trade_history_status';
+import {pingRollbackTrades} from './rollback';
+import {FetchSlimTrades} from '../bridge/handlers/fetch_slim_trades';
+
+export const PING_CSFLOAT_TRADE_STATUS_ALARM_NAME = 'ping_csfloat_trade_status_alarm';
+
+export async function pingTradeStatus(expectedSteamID?: string) {
+    await gStore.setWithStorage(chrome.storage.local, StorageKey.LAST_TRADE_PING_ATTEMPT, Date.now());
+
+    const hasPermissions = await HasPermissions.handleRequest(
+        {
+            permissions: [],
+            origins: ['*://*.steampowered.com/*'],
+        },
+        {}
+    );
+    if (!hasPermissions.granted) {
+        // They didn't enable offer tracking, skip for now
+        return;
+    }
+
+    let pendingTrades: SlimTrade[];
+    try {
+        const resp = await FetchSlimTrades.handleRequest({limit: 5000}, {});
+        pendingTrades = resp.trades;
+    } catch (e) {
+        console.error(e);
+        console.log('cannot fetch pending trades for CSFloat, may not be logged in or CSFloat down');
+        return;
+    }
+
+    let access: AccessToken | null = null;
+
+    try {
+        access = await getAccessToken(expectedSteamID);
+    } catch (e) {
+        console.error('failed to fetch access token', e);
+    }
+
+    let errors;
+
+    if (pendingTrades.length > 0) {
+        errors = await pingUpdates(pendingTrades, access?.steam_id);
+    }
+
+    // Ping status of ext + permissions
+    try {
+        await PingExtensionStatus.handleRequest(
+            {
+                access_token_steam_id: access?.steam_id,
+                history_error: errors?.history_error,
+                trade_offer_error: errors?.trade_offer_error,
+                blocked_buyers_error: errors?.blocked_buyers_error,
+            },
+            {}
+        );
+    } catch (e) {
+        console.error('failed to ping extension status to csfloat', e);
+    }
+}
+
+interface UpdateErrors {
+    history_error?: string;
+    trade_offer_error?: string;
+    blocked_buyers_error?: string;
+    rollback_trades_error?: string;
+}
+
+async function pingUpdates(pendingTrades: SlimTrade[], steamID?: string | null): Promise<UpdateErrors> {
+    const errors: UpdateErrors = {};
+
+    try {
+        await reportBlockedBuyers(pendingTrades);
+    } catch (e) {
+        console.error('failed to report blocked buyers', e);
+        errors.blocked_buyers_error = (e as any).toString();
+    }
+
+    try {
+        await cancelUnconfirmedTradeOffers(pendingTrades);
+    } catch (e) {
+        console.error(`failed to cancel unconfirmed trade offers`, e);
+    }
+
+    let tradeHistory: TradeHistoryStatus[] = [];
+    try {
+        tradeHistory = await pingTradeHistory(pendingTrades, steamID);
+    } catch (e) {
+        console.error('failed to ping trade history', e);
+        errors.history_error = (e as any).toString();
+    }
+
+    try {
+        await pingSentTradeOffers(pendingTrades, steamID);
+    } catch (e) {
+        console.error('failed to ping sent trade offer state', e);
+        errors.trade_offer_error = (e as any).toString();
+    }
+
+    try {
+        await pingCancelTrades(pendingTrades, tradeHistory);
+    } catch (e) {
+        console.error('failed to ping cancel ping trade offers', e);
+    }
+
+    try {
+        await pingRollbackTrades(pendingTrades, tradeHistory);
+    } catch (e) {
+        console.error('failed to ping rollback trades', e);
+        errors.rollback_trades_error = (e as any).toString();
+    }
+
+    return errors;
+}
