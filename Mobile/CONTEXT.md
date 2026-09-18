@@ -19,6 +19,10 @@ Steam Account Manager keeps multiple Steam-related website sessions on one Andro
 Website sessions and extension-created website helper tabs request desktop user-agent
 and viewport modes before loading. Extension controls start collapsed, and popup
 windows provide an explicit return to the website without disabling the extension.
+CSFloat website sessions and their helper tabs use a Windows desktop Firefox user
+agent with the running engine's version: CSFloat rejects the default Linux desktop
+identity on touch devices even when its official extension is detected. Other website
+profiles retain Gecko's default desktop identity.
 
 **Navigation policy**: The allowed primary and authentication destinations for a website. Other web destinations require explicit external handoff; malformed or non-web destinations are rejected.
 

@@ -60,6 +60,7 @@ import com.steamaccountmanager.app.browser.CsfloatPopupStatus
 import com.steamaccountmanager.app.browser.CsfloatTrackingState
 import com.steamaccountmanager.app.browser.csfloatDenialMessage
 import com.steamaccountmanager.app.browser.csfloatTrackingMessage
+import com.steamaccountmanager.app.browser.csfloatUserAgentOverride
 import java.io.File
 import kotlinx.coroutines.launch
 import org.json.JSONObject
@@ -76,9 +77,10 @@ import org.mozilla.geckoview.WebRequestError
 private const val DEBUG_ACTIVITY_RECREATED = "geckoBrowserActivityRecreated"
 
 /** Configure both layout and the request identity before any website can load. */
-internal fun newDesktopWebsiteSession() = GeckoSession().apply {
+internal fun newDesktopWebsiteSession(websiteId: String) = GeckoSession().apply {
     settings.userAgentMode = GeckoSessionSettings.USER_AGENT_MODE_DESKTOP
     settings.viewportMode = GeckoSessionSettings.VIEWPORT_MODE_DESKTOP
+    settings.userAgentOverride = csfloatUserAgentOverride(websiteId, GeckoSession.getDefaultUserAgent())
 }
 
 private tailrec fun Context.findActivity(): Activity? = when (this) {
@@ -441,7 +443,7 @@ fun GeckoBrowserScreen(
                 }
                 // ponytail: at most two helper tabs; add a tab UI only if a supported package needs more.
                 if (extensionTabs.size >= 2) return null
-                val tab = newDesktopWebsiteSession()
+                val tab = newDesktopWebsiteSession(websiteId)
                 extensionTabs.add(tab)
                 tab.contentDelegate = object : GeckoSession.ContentDelegate {
                     override fun onCloseRequest(session: GeckoSession) {
@@ -1418,7 +1420,7 @@ fun GeckoBrowserScreen(
                             ViewGroup.LayoutParams.MATCH_PARENT,
                         )
                     }
-                    val session = newDesktopWebsiteSession()
+                    val session = newDesktopWebsiteSession(websiteId)
                     session.navigationDelegate = object : GeckoSession.NavigationDelegate {
                         override fun onCanGoBack(session: GeckoSession, value: Boolean) {
                             canGoBack = value
