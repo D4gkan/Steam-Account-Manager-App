@@ -1,6 +1,5 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
+  "update_url": "https://clients2.google.com/service/update2/crx",
   "manifest_version": 3,
   "name": "Skins.com Marketplace",
   "short_name": "Skins.com",
@@ -97,5 +96,6 @@
         "*://*.steamcommunity.com/*"
       ]
     }
-  ]
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEArGrzvkLRzE8BJmTz9VD8syVSRU4A7q+cL2E22LjcKWRIth/fyPxWY3mBdVtxK8yoKrDyBxfTfqrugOB50Ql8eK/6qu2c+knfSxYF6CXarDg4YGf/Ml7pOnzcEclEzOjoX/y+taW3I8XcyHpm5ueq5Jj+Snq44YVae8fGwxrEUeKfZF5+iJ/y8N9DgtzSn75L+k+UF63mU2MvlKoeCNoO8lqs8iQf/5HKqaRAZzNuFRT6qIwXS7Dw76X3oVVEqNvEct/12Hh3e/B/r500d6IgaqaCVplwjaWsTje6xT5fMMlF4dta2aGd2cyYPTae517yssYaOEng7edOYUZzbeWs1wIDAQAB"
 }
