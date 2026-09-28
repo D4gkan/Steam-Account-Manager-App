@@ -1,13 +1,32 @@
 import { describe, expect, it } from 'vitest';
-import { mkdtempSync, mkdirSync, writeFileSync, readFileSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync, cpSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { inspectExtensionFolder, computeDigest } from '../src/services/extensions/extensionProvisioner';
-import { extensionId } from '../src/services/extensions/extensionStager';
+import { extensionId, stageExtensions } from '../src/services/extensions/extensionStager';
 describe('extension asset validation', () => {
   it('preserves the official CSFloat ID used by its website', () => {
     const manifest = JSON.parse(readFileSync('resources/extensions/csfloat-market-checker/manifest.json', 'utf8'));
     expect(extensionId(manifest.key)).toBe('jjicbefpemnphinccgikpdaagjebbnhg');
+  });
+  it('stages Skins.com under its official extension ID', () => {
+    const manifest = JSON.parse(readFileSync('resources/extensions/skinscom/manifest.json', 'utf8'));
+    expect(extensionId(manifest.key)).toBe('inlmjddlgofjocncdogkelkfbgkecphn');
+
+    const fixtureRoot = mkdtempSync(join(tmpdir(), 'sam-skinscom-test-'));
+    const dataDir = join(fixtureRoot, 'data');
+    try {
+      const sourceRoot = join(fixtureRoot, 'source');
+      mkdirSync(sourceRoot);
+      cpSync('resources/extensions/skinscom', join(sourceRoot, 'skinscom'), { recursive: true });
+      const pkg = stageExtensions(sourceRoot, dataDir).find(({ key }) => key === 'skinscom');
+      expect(pkg?.compatibilityStatus).toBe('installed');
+      expect(pkg?.actualId).toBe('inlmjddlgofjocncdogkelkfbgkecphn');
+      expect(pkg?.path).toContain('inlmjddlgofjocncdogkelkfbgkecphn');
+      expect(JSON.parse(readFileSync(join(pkg!.path!, 'manifest.json'), 'utf8')).key).toBe(manifest.key);
+    } finally {
+      rmSync(fixtureRoot, { recursive: true, force: true });
+    }
   });
   it('validates referenced assets including extension-root absolute paths', () => {
     const dir = mkdtempSync(join(tmpdir(), 'sam-extension-test-'));
