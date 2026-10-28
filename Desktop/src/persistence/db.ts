@@ -56,6 +56,8 @@ export function openDatabase(dbPath: string): DbHandle {
   });
 
   for (const file of migrationFiles) {
+    // Seed original defaults before the catalog upgrade so fresh installs retain their order.
+    if (file === "004_requested_marketplaces.sql") seedCatalogIfNeeded(db);
     applyMigration(file);
   }
 
