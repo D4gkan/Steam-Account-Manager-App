@@ -6,7 +6,7 @@ const folder = fs.mkdtempSync(path.join(os.tmpdir(), 'sam-db-test-'));
 const file = path.join(folder, 'db.sqlite');
 let handle = openDatabase(file);
 let websites = new WebsiteRepository(handle.db);
-const original = websites.listAll(); assert.equal(original.length, 8);
+const original = websites.listAll(); assert.equal(original.length, 51);
 assert.equal(original[0].displayName, 'Steam');
 assert.throws(() => websites.reorder([original[0].id, original[0].id]));
 assert.deepEqual(websites.listAll().map(w => w.id), original.map(w => w.id));
@@ -18,7 +18,7 @@ assert.throws(() => accounts.confirmIdentity(a.id, 76561198012345678, 'Bad', nul
 const duplicate = accounts.createPending(); assert.throws(() => accounts.confirmIdentity(duplicate.id, '76561198012345678', 'Duplicate', null));
 assert.equal(accounts.findById(duplicate.id).steamId64, null);
 handle.close(); handle = openDatabase(file); websites = new WebsiteRepository(handle.db);
-assert.equal(websites.listAll().length, 7); assert.equal(websites.findById(original[0].id), null);
+assert.equal(websites.listAll().length, 50); assert.equal(websites.findById(original[0].id), null);
 for (const [name, url] of [
   ['haram.cash', 'http://haram.cash:8888/'],
   ['Trading Dashboard', 'https://tradingdashboardv1.vercel.app/'],
@@ -26,7 +26,7 @@ for (const [name, url] of [
 ]) websites.add(name, url);
 handle.db.prepare("DELETE FROM schema_meta WHERE key = '002_remove_retired_default_sites'").run();
 handle.close(); handle = openDatabase(file); websites = new WebsiteRepository(handle.db);
-assert.equal(websites.listAll().length, 7, 'retired defaults must be removed from existing catalogs');
+assert.equal(websites.listAll().length, 50, 'retired defaults must be removed from existing catalogs');
 handle.db.prepare('UPDATE accounts SET avatar_cache_path = ? WHERE id = ?').run('old-unverified.png', a.id);
 const beforeAvatarReset = new AccountRepository(handle.db).findById(a.id);
 handle.db.prepare("DELETE FROM schema_meta WHERE key = '003_invalidate_unverified_avatars'").run();

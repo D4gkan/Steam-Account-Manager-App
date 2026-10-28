@@ -8,7 +8,7 @@ const fs = require('node:fs'), path = require('node:path'), os = require('node:o
   const quit = async () => { const processHandle = app.process(); const exited = new Promise(resolve => processHandle.once('exit', resolve)); void app.evaluate(({ app }) => app.quit()).catch(() => {}); await exited; app = null; };
   try {
     await start(); console.log('Packaged dashboard ready');
-    const websites = await page.evaluate(() => window.steamAccountManager.websites.list()); assert.equal(websites.length, 8);
+    const websites = await page.evaluate(() => window.steamAccountManager.websites.list()); assert.equal(websites.length, 51);
     const account = await page.evaluate(() => window.steamAccountManager.accounts.createPending());
     const status = await page.evaluate(() => window.steamAccountManager.status()); assert.equal(status.browserStates[account.id], 'open', JSON.stringify(status));
     const extensions = await page.evaluate(id => window.steamAccountManager.extensions(id), account.id);
